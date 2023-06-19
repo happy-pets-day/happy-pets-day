@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/adopt/*")
 public class AdoptController {
-    @GetMapping("/adoptionInformation")
+    @GetMapping("/list")
     public String AdoptionInformation(){
         return "AdoptionInformation/AdoptionInformation";
     }

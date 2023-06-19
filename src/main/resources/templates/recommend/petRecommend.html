@@ -47,9 +47,9 @@
               종류를 선택하세요
           </div>
           <div class="select-zone">
-              <div class="select-btn">강아지</div>
-              <div class="select-btn">고양이</div>
-              <div class="select-btn">기타</div>
+              <div class="select-btn dog">강아지</div>
+              <div class="select-btn cat">고양이</div>
+              <div class="select-btn etc">기타</div>
           </div>
       </div>
       <div class="section2 select">
@@ -57,9 +57,12 @@
               성격을 선택하세요
           </div>
           <div class="select-zone">
-              <div class="select-btn">강아지</div>
-              <div class="select-btn">강아지</div>
-              <div class="select-btn">강아지</div>
+              <div class="select-btn">애정</div>
+              <div class="select-btn">온순</div>
+              <div class="select-btn">활동</div>
+              <div class="select-btn">상냥</div>
+              <div class="select-btn">충성</div>
+              <div class="select-btn change-select2-btn">독립</div>
           </div>
       </div>
       <div class="section3 select">
@@ -67,9 +70,14 @@
               털 색깔을 선택하세요
           </div>
           <div class="select-zone">
-              <div class="select-btn">강아지</div>
-              <div class="select-btn">강아지</div>
-              <div class="select-btn">강아지</div>
+              <div class="select-btn">하양</div>
+              <div class="select-btn">빨강</div>
+              <div class="select-btn">갈색</div>
+              <div class="select-btn">파랑</div>
+              <div class="select-btn">검정</div>
+              <div class="select-btn">실버</div>
+              <div class="select-btn">골드</div>
+              <div class="select-btn change-select3-btn">노랑</div>
           </div>
       </div>
       <div class="section4 select">
@@ -77,9 +85,9 @@
               털 길이를 선택하세요
           </div>
           <div class="select-zone">
-              <div class="select-btn">강아지</div>
-              <div class="select-btn">강아지</div>
-              <div class="select-btn">강아지</div>
+              <div class="select-btn">단모</div>
+              <div class="select-btn">중모</div>
+              <div class="select-btn">장모</div>
           </div>
       </div>
       <div class="section5 select">
@@ -87,17 +95,28 @@
               크기를 선택하세요
           </div>
           <div class="select-zone">
-              <div class="select-btn">강아지</div>
-              <div class="select-btn">강아지</div>
-              <div class="select-btn">강아지</div>
+              <div class="select-btn">소형</div>
+              <div class="select-btn">중형</div>
+              <div class="select-btn">대형</div>
           </div>
       </div>
-      <form class="next">
-          <input type="hidden" name="" class="input1">
-          <input type="hidden" name="" class="input2">
-          <input type="hidden" name="" class="input3">
-          <input type="hidden" name="" class="input4">
-          <input type="hidden" name="" class="input5">
+      <div class="section6 select">
+          <div>
+              털빠짐 정도를 선택하세요
+          </div>
+          <div class="select-zone">
+              <div class="select-btn">적음</div>
+              <div class="select-btn">중간</div>
+              <div class="select-btn">상관없음</div>
+          </div>
+      </div>
+      <form class="next" th:action="@{/recommend/list}">
+          <input type="hidden" name="recommendSpecies" class="input1">
+          <input type="hidden" name="recommendPersonality" class="input2">
+          <input type="hidden" name="recommendColor" class="input3">
+          <input type="hidden" name="recommendLength" class="input4">
+          <input type="hidden" name="recommendSize" class="input5">
+          <input type="hidden" name="recommendAlopecia" class="input6">
           <button type="submit" class="submit">다음</button>
       </form>
   </div>

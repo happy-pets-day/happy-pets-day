@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Data
 @NoArgsConstructor
-public class SitterReview {
+public class SitterReviewDto {
     private Long reviewNumber;
     private Long userNumber;
     private Long sitterNumber;

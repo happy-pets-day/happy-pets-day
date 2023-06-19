@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-  <head>
+<!-- 회원정보 수정 페이지 -->
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,258 +16,258 @@
     <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
     <title>Happy Pet's day | 회원정보 수정</title>
   </head>
-  <!-- 회원정보 수정 페이지 -->
-  <body>
-  <!-- 펫 정보 수정 모달 -->
-  <div id="modal-container">
-    <div id="profile-box">
-      <div class="profile-header">
-        <div class="profile-title">
-          <h3>프로필 설정</h3>
-        </div>
-        <div class="btn-close">
-          <img
-                  src="../../img/pngwing.com.png"
-                  alt="닫기"
-                  width="30"
-                  height="30"
+<body>
+<!-- 펫 정보 수정 모달 -->
+<div id="modal-container">
+  <div id="profile-box">
+    <div class="profile-header">
+      <div class="profile-title">
+        <h3>프로필 설정</h3>
+      </div>
+      <div class="btn-close">
+        <img
+                src="../../img/pngwing.com.png"
+                alt="닫기"
+                width="30"
+                height="30"
+        />
+      </div>
+    </div>
+    <div id="profile-contents">
+      <div class="basic-photo">
+        <img
+                id="uploaded-image"
+                src="https://lifet.co.kr/img/profile/default.png"
+                alt=""
+        />
+        <label for="photo-file">
+          <input
+                  type="file"
+                  name="photo-file"
+                  id="photo-file"
+                  accept=".jpg, .jpeg, .png"
+                  class="hidden"
+                  onchange="updateImage(this)"
           />
+          <div class="file-circle">
+            <img
+                    src="https://lifet.co.kr/img/profile/prifle_camera.png"
+                    alt=""
+                    class="file-img"
+            />
+          </div>
+        </label>
+        <div class="change_default-img">
+          <button type="button" onclick="restoreDefaultImg()">
+            기본 이미지
+          </button>
         </div>
       </div>
-      <div id="profile-contents">
-        <div class="basic-photo">
-          <img
-                  id="uploaded-image"
-                  src="https://lifet.co.kr/img/profile/default.png"
-                  alt=""
-          />
-          <label for="photo-file">
-            <input
-                    type="file"
-                    name="photo-file"
-                    id="photo-file"
-                    accept=".jpg, .jpeg, .png"
-                    class="hidden"
-                    onchange="updateImage(this)"
-            />
-            <div class="file-circle">
-              <img
-                      src="https://lifet.co.kr/img/profile/prifle_camera.png"
-                      alt=""
-                      class="file-img"
-              />
+      <!-- 프로필 정보 -->
+      <form action="#" method="get">
+        <div id="profile-info">
+          <div class="field">
+            <div class="info-kind">이름</div>
+            <input type="text" class="name insert" maxlength="20" />
+          </div>
+          <div class="field front">
+            <div class="info-kind">동물 종류</div>
+            <div class="dropdown">
+              <button type="button" class="dropdown-btn">
+                <span>동물의 종류를 입력해주세요</span>
+              </button>
+              <ul class="menu-list">
+                <li class="list">
+                  <button type="button" id="dog" value="dog">강아지</button>
+                </li>
+                <li class="list">
+                  <button
+                          type="button"
+                          id="cat"
+                          value="cat"
+                          onclick="selectCat"
+                  >
+                    고양이
+                  </button>
+                </li>
+                <li class="list">
+                  <button type="button" value="etc" class="etc-direct">
+                    기타 - 직접 입력
+                  </button>
+                </li>
+              </ul>
             </div>
-          </label>
-          <div class="change_default-img">
-            <button type="button" onclick="restoreDefaultImg()">
-              기본 이미지
-            </button>
+          </div>
+
+          <input type="hidden" id="etcDirect" name="etcDirect" value="" />
+
+          <div class="field">
+            <div class="info-kind">품종</div>
+            <input type="text" class="insert" />
+          </div>
+          <div class="field">
+            <div class="info-kind">생일</div>
+            <input
+                    class="birth birth_year"
+                    type="text"
+                    placeholder="년(4자)"
+                    maxlength="4"
+            />
+            <input
+                    class="birth birth_month"
+                    type="text"
+                    placeholder="월"
+                    maxlength="2"
+            />
+            <input
+                    class="birth birth-day"
+                    type="text"
+                    placeholder="일"
+                    maxlength="2"
+            />
+          </div>
+          <div class="field select-btn">
+            <div class="info-kind">성별</div>
+            <div class="option-wrap">
+              <input id="male" type="radio" name="gender" value="M" />
+              <span>남자아이</span>
+              <input id="female" type="radio" name="gender" value="F" />
+              <span>여자아이</span>
+            </div>
+          </div>
+          <div class="field">
+            <div class="info-kind">중성화</div>
+            <div class="option-wrap">
+              <input type="radio" name="neuter" value="Y" />
+              <span>중성화 전</span>
+              <input type="radio" name="neuter" value="N" />
+              <span>중성화 완료</span>
+            </div>
           </div>
         </div>
-        <!-- 프로필 정보 -->
-        <form action="#" method="get">
-          <div id="profile-info">
-            <div class="field">
-              <div class="info-kind">이름</div>
-              <input type="text" class="name insert" maxlength="20" />
-            </div>
-            <div class="field front">
-              <div class="info-kind">동물 종류</div>
-              <div class="dropdown">
-                <button type="button" class="dropdown-btn">
-                  <span>동물의 종류를 입력해주세요</span>
-                </button>
-                <ul class="menu-list">
-                  <li class="list">
-                    <button type="button" id="dog" value="dog">강아지</button>
-                  </li>
-                  <li class="list">
-                    <button
-                            type="button"
-                            id="cat"
-                            value="cat"
-                            onclick="selectCat"
-                    >
-                      고양이
-                    </button>
-                  </li>
-                  <li class="list">
-                    <button type="button" value="etc" class="etc-direct">
-                      기타 - 직접 입력
-                    </button>
-                  </li>
-                </ul>
-              </div>
-            </div>
+        <div class="update-btn_wrap">
+          <button id="updateBtn" class="update-btn">저장하기</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- Header -->
+<header th:replace="fragment/header :: header"></header>
 
-            <input type="hidden" id="etcDirect" name="etcDirect" value="" />
+<!-- 회원정보 -->
+<section id="container">
+  <!-- 왼쪽 탭 목록 -->
+  <div class="mypage-left">
+    <div class="color-text">
+      <span class="font-bold user-name">박광인</span>
+      <span>님의 마이페이지</span>
+    </div>
 
-            <div class="field">
-              <div class="info-kind">품종</div>
-              <input type="text" class="insert" />
-            </div>
-            <div class="field">
-              <div class="info-kind">생일</div>
-              <input
-                      class="birth birth_year"
-                      type="text"
-                      placeholder="년(4자)"
-                      maxlength="4"
+    <!-- 탭 별로 경로설정 -->
+    <ul>
+      <li>
+        <h3>나의 정보</h3>
+        <a href=""> 회원정보 관리 </a>
+      </li>
+      <li>
+        <h3>나의 반려동물</h3>
+        <a href=""> 프로필 관리 </a>
+      </li>
+      <li>
+        <h3>펫시터</h3>
+        <a href=""> 펫시터 예약내역 </a>
+      </li>
+      <li>
+        <h3>나의 게시물</h3>
+        <a href="">산책 모임</a>
+        <a href="">펫시터 소개</a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 오른쪽 컨텐츠 -->
+  <div class="mypage-right">
+    <h2>나의 반려동물</h2>
+    <div class="nav-write">
+      <!-- <div class="mypetwrite">김철수님의 반려동물</div> -->
+      <a href="" class="pet-register">+펫 등록</a>
+    </div>
+    <div class="container">
+      <div class="swiper-container">
+        <div class="animal-swiper">
+          <div class="profile-card">
+            <div class="profile-info">
+              <button type="button" class="menu-dot">
+                <img
+                        src="https://lifet.co.kr/img/icon/dot.svg"
+                        alt=""
+                        class="menu-dot-img"
+                />
+              </button>
+              <img
+                      src="https://lifet.co.kr/img/profile/default.png"
+                      alt=""
+                      class="default-profile"
               />
-              <input
-                      class="birth birth_month"
-                      type="text"
-                      placeholder="월"
-                      maxlength="2"
-              />
-              <input
-                      class="birth birth-day"
-                      type="text"
-                      placeholder="일"
-                      maxlength="2"
-              />
             </div>
-            <div class="field select-btn">
-              <div class="info-kind">성별</div>
-              <div class="option-wrap">
-                <input id="male" type="radio" name="gender" value="M" />
-                <span>남자아이</span>
-                <input id="female" type="radio" name="gender" value="F" />
-                <span>여자아이</span>
-              </div>
-            </div>
-            <div class="field">
-              <div class="info-kind">중성화</div>
-              <div class="option-wrap">
-                <input type="radio" name="neuter" value="Y" />
-                <span>중성화 전</span>
-                <input type="radio" name="neuter" value="N" />
-                <span>중성화 완료</span>
-              </div>
+            <div class="profile-info2">
+              <div class="name">이름 : 백설이</div>
+              <div class="kind">동물 종류 : 강아지</div>
+              <div class="detailed-kind">품종 : 진돗개</div>
+              <div class="birth">생일 : 2018-06-08</div>
+              <div class="gender">성별 : M</div>
+              <div class="surgery">중성화 : 중성화 완료</div>
             </div>
           </div>
-          <div class="update-btn_wrap">
-            <button id="updateBtn" class="update-btn">저장하기</button>
-          </div>
-        </form>
+
+          <!-- 수정, 삭제 창 -->
+          <article class="edit-box">
+            <div class="select-box">
+              <!-- '수정' 버튼 클릭 > 모달 띄워주기  -->
+              <div class="btn-list">
+                <a href="#" class="modify1"
+                >수정
+                  <img
+                          src="https://lifet.co.kr/img/icon/icon_modify.svg"
+                          alt=""
+                  />
+                </a>
+              </div>
+              <!-- <br />
+              <hr /> -->
+              <div class="btn-list">
+                <a href="#" class="delete1"
+                >삭제
+                  <img
+                          src="https://lifet.co.kr/img/icon/icon_del.svg"
+                          alt=""
+                  />
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="profile-card2">
+          <a href="" class="card2-a">
+            <div class="circle">
+              <div class="plus">+</div>
+            </div>
+            <div class="add-profile">프로필 추가</div>
+          </a>
+        </div>
       </div>
     </div>
   </div>
-    <!-- Header -->
-    <header th:replace="fragment/header :: header"></header>
-
-    <!-- 회원정보 -->
-    <section id="container">
-      <!-- 왼쪽 탭 목록 -->
-      <div class="mypage-left">
-        <div class="color-text">
-          <span class="font-bold user-name">박광인</span>
-          <span>님의 마이페이지</span>
-        </div>
-
-        <!-- 탭 별로 경로설정 -->
-        <ul>
-          <li>
-            <h3>나의 정보</h3>
-            <a href=""> 회원정보 관리 </a>
-          </li>
-          <li>
-            <h3>나의 반려동물</h3>
-            <a href=""> 프로필 관리 </a>
-          </li>
-          <li>
-            <h3>펫시터</h3>
-            <a href=""> 펫시터 예약내역 </a>
-          </li>
-          <li>
-            <h3>나의 게시물</h3>
-            <a href="">산책 모임</a>
-            <a href="">펫시터 소개</a>
-          </li>
-        </ul>
-      </div>
-
-      <!-- 오른쪽 컨텐츠 -->
-      <div class="mypage-right">
-        <h2>나의 반려동물</h2>
-        <div class="nav-write">
-          <!-- <div class="mypetwrite">김철수님의 반려동물</div> -->
-          <a href="" class="pet-register">+펫 등록</a>
-        </div>
-        <div class="container">
-          <div class="swiper-container">
-            <div class="animal-swiper">
-              <div class="profile-card">
-                <div class="profile-info">
-                  <button type="button" class="menu-dot">
-                    <img
-                      src="https://lifet.co.kr/img/icon/dot.svg"
-                      alt=""
-                      class="menu-dot-img"
-                    />
-                  </button>
-                  <img
-                    src="https://lifet.co.kr/img/profile/default.png"
-                    alt=""
-                    class="default-profile"
-                  />
-                </div>
-                <div class="profile-info2">
-                  <div class="name">이름 : 백설이</div>
-                  <div class="kind">동물 종류 : 강아지</div>
-                  <div class="detailed-kind">품종 : 진돗개</div>
-                  <div class="birth">생일 : 2018-06-08</div>
-                  <div class="gender">성별 : M</div>
-                  <div class="surgery">중성화 : 중성화 완료</div>
-                </div>
-              </div>
-
-              <!-- 수정, 삭제 창 -->
-              <article class="edit-box">
-                <div class="select-box">
-                  <!-- '수정' 버튼 클릭 > 모달 띄워주기  -->
-                  <div class="btn-list">
-                    <a href="#" class="modify1"
-                      >수정
-                      <img
-                        src="https://lifet.co.kr/img/icon/icon_modify.svg"
-                        alt=""
-                      />
-                    </a>
-                  </div>
-                  <!-- <br />
-                  <hr /> -->
-                  <div class="btn-list">
-                    <a href="#" class="delete1"
-                      >삭제
-                      <img
-                        src="https://lifet.co.kr/img/icon/icon_del.svg"
-                        alt=""
-                      />
-                    </a>
-                  </div>
-                </div>
-              </article>
-            </div>
-
-            <div class="profile-card2">
-              <a href="" class="card2-a">
-                <div class="circle">
-                  <div class="plus">+</div>
-                </div>
-                <div class="add-profile">프로필 추가</div>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+</section>
 
 
-    <!-- Footer -->
-    <footer th:replace="fragment/footer :: footer"></footer>
+<!-- Footer -->
+<footer th:replace="fragment/footer :: footer"></footer>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script th:src="@{/js/myPage/myPet.js}"></script>
-  </body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script th:src="@{/js/fragment/header.js}"></script>
+<script th:src="@{/js/myPage/myPet.js}"></script>
+</body>
 </html>

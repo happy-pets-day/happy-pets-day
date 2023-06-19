@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Data
 @NoArgsConstructor
-public class SitterFile {
+public class SitterFileDto {
     private Long sitterFileNumber;
     private Long sitterNumber;
     private String sitterFileFileName;

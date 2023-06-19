@@ -19,16 +19,14 @@ $(".delete1").on("click", function () {
 // 모달
 let modal = $("#modal-container");
 
-modal.hide();
-
 // '수정' 클릭 > 모달 띄워주기
 $(".modify1").on("click", function () {
-  modal.show();
+  modal.css('display', 'flex');
 });
 
 // 'X' 클릭 > 모달 끄기
 $(".btn-close").on("click", function () {
-  modal.hide();
+  modal.css('display', 'none');
 });
 
 // '동물 종류' 드롭다운 메뉴 열기/닫기
