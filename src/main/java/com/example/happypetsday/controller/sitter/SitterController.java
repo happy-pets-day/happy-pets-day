@@ -15,6 +15,7 @@ public class SitterController {
 
     @GetMapping("/apply")
     public String sitterApplyTo(){
+
         return "sitter/applyTo";
     }
 

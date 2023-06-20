@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.happypetsday.mapper.SitterMapper">
+
+    <select id="selectSitterNumber" resultType="long">
+        SELECT APPLY_NUMBER FROM TBL_SITTER_APPLY
+        WHERE APPLY_NUMBER = #{applyNumber}
+    </select>
+
+    <insert id="apply">
+        INSERT INTO TBL_SITTER_APPLY (APPLY_NUMBER, APPLY_CONTENT, APPLY_DATE, USER_NUMBER)
+        VALUES (SEQ_SITTER_APPLY.NEXTVAL, #{applyContent}, SYSDATE, #{userNumber})
+    </insert>
+
+</mapper>
