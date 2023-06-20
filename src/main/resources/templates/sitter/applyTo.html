@@ -6,20 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" th:href="@{/css/sitter/applyTo.css}" />
+    <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
+    <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
     />
   </head>
   <body>
-    <header></header>
+  <header th:replace="fragment/header :: header"></header>
     <div class="header-title">
       <h2 class="title">지원서 작성하기</h2>
     </div>
     <div style="display: flex; justify-content: center; padding-bottom: 200px">
       <div class="main">
         <p>1. 기본 정보 확인</p>
-        <form action="#">
+        <form action="/sitter/applyTo" method="post">
           <div class="apply-sitter">
             <div class="box-padding">
               <div>
@@ -55,45 +57,8 @@
               </div>
             </div>
           </div>
-          <p
-            style="
-              margin: 0px auto;
-              width: 950px;
-              padding-bottom: 15px;
-              font-size: 25px;
-              font-weight: bold;
-              padding-top: 70px;
-            "
-          >
-            2. 전문 분야 선택
-          </p>
 
-          <div class="specialty">
-            <label
-              ><input
-                type="checkbox"
-                name="specialty"
-                value="dog"
-              />강아지</label
-            >
-            <label
-              ><input
-                type="checkbox"
-                name="specialty"
-                value="cat"
-              />고양이</label
-            >
-            <label
-              ><input
-                type="checkbox"
-                name="specialty"
-                value="other"
-              />기타</label
-            >
-          </div>
-        </form>
-        <p>3. 자기 소개 및 자격증 첨부</p>
-        <form action="#">
+        <p class="pppp">2. 자기 소개 및 자격증 첨부</p>
           <div class="apply-sitter">
             <div class="box-padding">
               <div>
@@ -142,8 +107,9 @@
         </form>
       </div>
     </div>
-    <footer></footer>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script th:src="@{/js/sitter/aplyTo.js}"></script>
+    <script th:src="@{/js/sitter/applyTo.js}"></script>
+  <script th:src="@{/js/fragment/header.js}"></script>
+  <footer th:replace="fragment/footer :: footer"></footer>
   </body>
 </html>

@@ -6,13 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" th:href="@{/css/sitter/sitterList.css}" />
+    <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
+    <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
     />
   </head>
   <body>
-    <header></header>
+  <header th:replace="fragment/header :: header"></header>
     <div class="header-title">
       <h1>펫시터를 소개합니다!</h1>
       <p>원하는 펫시터를 찾아보세요!</p>
@@ -80,9 +82,11 @@
         </div>
       </div>
     </div>
+  <footer th:replace="fragment/footer :: footer"></footer>
 
-    <footer></footer>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script th:src="@{/js/sitter/sitterList.js}"></script>
+  <script th:src="@{/js/fragment/header.js}"></script>
   </body>
 </html>
