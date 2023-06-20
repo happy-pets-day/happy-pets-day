@@ -4,6 +4,7 @@
 <configuration>
     <typeAliases>
         <typeAlias type="com.example.happypetsday.dto.UserDto" alias="userDto"/>
+        <typeAlias type="com.example.happypetsday.dto.SitterApplyDto" alias="sitterApplyDto"/>
     </typeAliases>
 
 </configuration>

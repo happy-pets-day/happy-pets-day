@@ -269,7 +269,7 @@ input[type="file"] {
 
 .input-hidden > input {
   font-size: 14px;
-  margin: 0.5rem rem;
+  margin: 0.5rem;
   font-weight: bold;
   color: #343434;
   width: 131px;
@@ -277,3 +277,14 @@ input[type="file"] {
   border-radius: 5px;
   text-align: center;
 }
+
+.pppp{
+  margin: 0px auto;
+  width: 950px;
+  padding-bottom: 15px;
+  font-size: 25px;
+  font-weight: bold;
+  padding-top: 70px;
+}
+
+
