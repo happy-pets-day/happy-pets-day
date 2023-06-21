@@ -20,4 +20,5 @@ public class StrollBoardDto {
     private String strollBoardUpdateDate;
     private Long userNumber;
     private Long petNumber;
+    private Long strollBoardViewCount;
 }

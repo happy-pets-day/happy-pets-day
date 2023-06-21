@@ -2,93 +2,104 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>산책모임 게시판</title>
-  <link rel="stylesheet" th:href="@{/css/strollBoard/strollBoardList.css}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>산책모임 게시판</title>
+    <link rel="stylesheet" th:href="@{/css/strollBoard/strollBoardList.css}">
+    <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
+    <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
+
 </head>
 
 <body>
-
+<header th:replace="fragment/header :: header"></header>
 
 <div class="section-container">
-  <div class="section-box">
-    <div class="section-inner1">
-      <div class="write1">산책메이트를 찾으시나요?</div>
-      <div class="write2">원하는 지역의 산책메이트를 찾을 수 있도록 준비했어요.
-        <br>함께 산책하며 새로운 경험을 해보세요.
-      </div>
+    <div class="section-box">
+        <div class="section-inner1">
+            <div class="write1">산책메이트를 찾으시나요?</div>
+            <div class="write2">원하는 지역의 산책메이트를 찾을 수 있도록 준비했어요.
+                <br>함께 산책하며 새로운 경험을 해보세요.
+            </div>
+        </div>
+        <div class="section-inner2">
+            <img src="https://lifet.co.kr/img/visual/FAQ.png" alt="">
+        </div>
     </div>
-    <div class="section-inner2">
-      <img src="https://lifet.co.kr/img/visual/FAQ.png" alt="">
-    </div>
-  </div>
 </div>
 <div class="container1">
 
-  <header>
-    <div class="header">
-      <div class="header-left">
-        <h1>산책모임 게시판</h1>
-      </div>
+    <div class="header-title-wrap">
+        <div class="header-title">
+            <div class="header-title-left">
+                <h1>산책모임 게시판</h1>
+            </div>
+        </div>
     </div>
-  </header>
-  <div class="container">
-    <div class="write-btn-wrap">
-      <!-- 글쓰기 페이지 이동 처리 -->
-      <a href="#" class="write-btn">글쓰기</a>
-    </div>
-    <table class="board-table">
-      <div class="head-layout">
-        <thead>
-        <tr>
-          <th class="table-head-left">번호</th>
-          <th>제목</th>
-          <th>작성자</th>
-          <th>모임 일자</th>
-          <th class="table-head-right">지역</th>
-        </tr>
-        </thead>
-      </div>
-      <tbody>
-      <!-- ========== 게시글 목록 예시 =========== -->
+    <div class="container">
+        <div class="write-btn-wrap">
+            <!-- 글쓰기 페이지 이동 처리 -->
+            <a th:href="@{/stroll/write}" class="write-btn">글쓰기</a>
+        </div>
+        <table class="board-table">
+            <div class="head-layout">
+                <thead>
+                <tr>
+                    <th class="table-head-left">번호</th>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th>모임 일자</th>
+                    <th class="table-head-right">지역</th>
+                </tr>
+                </thead>
+            </div>
+            <tbody>
+            <!-- ========== 게시글 목록 예시 =========== -->
 
-      <!-- <th:block th:if="${not #lists.isEmpty(boardList)}">
-          <tr th:each="board : ${boardList}"> -->
-      <td class="no">1</td>
-      <td class="title">
-        <a href="#">
-          게시물 제목
-        </a>
-      </td>
-      <td class="author">aa123</td>
-      <td class="date">2023-06-08</td>
-      <td class="location">서울시 강남구</td>
-      </tr>
-      <!-- </th:block>
-      <th:block th:unless="${not #lists.isEmpty(boardList)}"> -->
-      <tr>
-        <td colspan="5" align="center">등록된 게시물이 없습니다.</td>
-      </tr>
-      <!-- </th:block> -->
 
-      <!-- ========== /게시글 목록 예시 =========== -->
-      </tbody>
-    </table>
-    <div class="pagination">
-      <ul>
-        <!-- ========== 페이징 처리 예시 ============ -->
-        <li><a href="#" class="prev">&lt;</a></li>
-        <li><a href="#" class="active">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-        <li><a href="#" class="next">&gt;</a></li>
-        <!-- ========== /페이징 처리 예시 ============ -->
-      </ul>
+            <th:block th:unless="${#lists.isEmpty(boardList)}">
+                <tr th:each="board : ${boardList}">
+                    <td class="no" th:text="${board.strollBoardNumber}"></td>
+                    <td class="title">
+                        <a th:href="@{/stroll/view(strollBoardNumber=${board.strollBoardNumber})}"
+                           th:text="${board.strollBoardTitle}"></a>
+                    </td>
+                    <td class="author" th:text="${board.userId}"></td>
+                    <td class="date" th:text="${board.strollBoardMeetingDate}"></td>
+                    <td class="location" th:text="${board.strollBoardAdminDistrict}"></td>
+                </tr>
+            </th:block>
+            <th:block th:if="${#lists.isEmpty(boardList)}">
+                <tr>
+                    <td colspan="5" align="center">등록된 게시물이 없습니다.</td>
+                </tr>
+            </th:block>
+
+            <!-- ========== /게시글 목록 예시 =========== -->
+
+        </table>
+        <div class="pagination">
+            <ul>
+                <!-- ========== 페이징 처리 예시 ============ -->
+                <li  th:if="${pageInfo.prev}"><a th:href="@{/stroll/list(page=${pageInfo.startPage-1})}" class="prev">&lt;</a></li>
+
+                <th:block th:each="i : ${#numbers.sequence(pageInfo.startPage, pageInfo.endPage)}">
+                <li th:if="${i == pageInfo.criteria.page}"><a th:href="@{/stroll/list/(page=${i})}" class="active" th:text="${i}"></a></li>
+                <li th:unless="${i == pageInfo.criteria.page}"><a th:href="@{/stroll/list/(page=${i})}" th:text="${i}"></a></li>
+                </th:block>
+
+
+                <li th:if="${pageInfo.next}"><a th:href="@{/stroll/list(page=${pageInfo.endPage+1})}" class="next">&gt;</a></li>
+                <!-- ========== /페이징 처리 예시 ============ -->
+            </ul>
+        </div>
     </div>
+</div>
+
+<footer th:replace="fragment/footer :: footer"></footer>
+<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+<script th:src="@{/js/fragment/header.js}"></script>
 </body>
 
 </html>

@@ -28,7 +28,11 @@ public class UserController {
     @PostMapping("/join")
     public RedirectView join(UserDto userDto) {
 //        추후에 오류 수정후 삭제
-        userDto.setUserAddress("서울시 강남구");
+//        userDto.setUserAddress("서울시 강남구");
+        if (!userService.isUserIdAvailable(userDto.getUserId())) {
+            // 아이디가 이미 사용 중인 경우
+            return new RedirectView("/user/join?error=duplicate");
+        }
         userService.register(userDto);
         return new RedirectView("/user/login");
     }

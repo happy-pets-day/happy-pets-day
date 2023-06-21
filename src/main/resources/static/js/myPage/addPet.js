@@ -1,3 +1,8 @@
+let msg = $('.msg').val();
+if(msg){
+    alert(msg)
+}
+
 // 성별선택버튼 클릭시 버튼색상, 텍스트색상 변경
 function changeColor(button) {
     var buttons = document.getElementsByClassName("gender-button");

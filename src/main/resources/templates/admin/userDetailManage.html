@@ -6,32 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>회원상세정보관리</title>
   <link rel="stylesheet" th:href="@{/css/admin/userDetailManage.css}">
+  <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
+  <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
 </head>
 
 <body>
-<header class="real-header">header (기존헤더에 '관리자' 메뉴만 추가)</header>
+<header th:replace="fragment/adminHeader :: adminHeader"></header>
+
 <div class="whole-container">
 
-  <div class="side-menubar">
-    <div class="top-leftmenu">
-      <div class="left-menu1"><b>관리자</b>의</div>
-      <div class="left-menu2">관리페이지</div>
-    </div>
-    <ul class="admin-side-menu">
-      <li>
-        <a href="" class="menu-a">전체회원 관리</a>
-      </li>
-      <li>
-        <a href="" class="menu-a">펫시터회원 관리</a>
-      </li>
-      <li>
-        <a href="" class="menu-a">펫시터 신청 관리</a>
-      </li>
-      <li>
-        <a href="" class="menu-a">산책모임게시판 관리</a>
-      </li>
-    </ul>
-  </div>
+  <div class="side-menubar" th:replace="fragment/adminSideBar :: adminSideBar"></div>
 
   <div class="content-container">
 
@@ -94,6 +78,9 @@
 
 
   </div>
+  </div>
+
+<footer th:replace="fragment/adminFooter :: adminFooter"></footer>
 </body>
 
 </html>

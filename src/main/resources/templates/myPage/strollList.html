@@ -41,12 +41,13 @@
           </li>
           <li>
             <h3>펫시터</h3>
-            <a href=""> 펫시터 예약내역 </a>
+            <a href="">내 소개</a>
+            <a href="">예약 내역 </a>
+            <a href="">예약 확인 </a>
           </li>
           <li>
             <h3>나의 게시물</h3>
             <a href="">산책 모임</a>
-            <a href="">펫시터 소개</a>
           </li>
         </ul>
       </div>
@@ -75,9 +76,7 @@
                     <tr th:each="board : ${boardList}"> -->
               <td class="no">1</td>
               <td class="title">
-                <a
-                  th:href="@{/board/boardReadOk.bo(boardNumber=${board.boardNumber})}"
-                >
+                <a href="#">
                   고양이 집사들 산책모임 원합니다. 강남역 앞에서 만나요.
                 </a>
               </td>
@@ -89,9 +88,7 @@
               <!-- 더미데이터 예시 -->
               <td class="no">2</td>
               <td class="title">
-                <a
-                  th:href="@{/board/boardReadOk.bo(boardNumber=${board.boardNumber})}"
-                >
+                <a href="#">
                   개롱역 근처에서 저희 강아지랑 같이 산책하실 분 구합니다.
                 </a>
               </td>

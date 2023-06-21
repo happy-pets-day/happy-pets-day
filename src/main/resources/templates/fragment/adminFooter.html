@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
+</head>
+<body>
+  <footer th:fragment="adminFooter">
+    <div class="footer">
+      <div class="footer--container">
+        <div class="footer--section1">
+<!--          메인페이지 이동-->
+          <a th:href="@{/admin/userManage}">
+            <img th:src="@{/img/logo2.png}" alt="">
+          </a>
+          <div class="footer--info">
+            팀명 : NPE 단속반<br>
+            팀원 : 김대연, 박광인, 서지민, 이건희, 이정현, 조상수 <br>
+            프로젝트명 : Happy pet's day<br>
+            작업공간 : 서울특별시 강남구 테헤란로 146 13층<br>
+          </div>
+          <div>
+            ⓒ Elevenliter Inc. All Rights Reserved
+          </div>
+        </div>
+        <div class="footer--section2">
+            <h1>고객센터</h1>
+            <h2>111-111-1111</h2>
+            <div>평일 11:00 ~ 18:00 ｜ 점심시간 13:00 ~ 14:00<br>
+                (토, 일요일 공휴일 휴무)
+            </div>
+            <div>고객문의 : official@elevenliter.com</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

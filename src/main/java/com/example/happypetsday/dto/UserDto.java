@@ -20,4 +20,7 @@ public class UserDto {
     private int questionNumber;
     private String findPasswordAnswer;
     private int userStatus;
+    private int userZoneCode;
+    private String userAddressDetail;
+    private String userAddressTip;
 }

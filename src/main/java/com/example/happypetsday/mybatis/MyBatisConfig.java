@@ -65,7 +65,8 @@ public class MyBatisConfig {
     public SqlSessionFactory sqlSessionFactory() throws Exception{
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(dataSource());
-
+//                                                                                                                                          /** 하위 어떤 경로든 xml파일 다 찾기
+//        sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath*:mapper/**/*.xml"));
         sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath*:mapper/*.xml"));
         sqlSessionFactoryBean.setConfigLocation(applicationContext.getResource("classpath:/config/config.xml"));
 

@@ -28,14 +28,6 @@
     font-style: normal;
 }
 
-.real-header{
-    width : 100vw;
-    height : 71px;
-    border : 1px solid black;
-    text-align: center;
-    background-color: #A4C9FE;
-}
-
 .whole-container{
     width: 1200px;
     height : 900px;
@@ -184,64 +176,6 @@ body {
     margin: 0 auto;
     max-width: 1024px;
     padding: 10px;
-}
-
-/* 헤더 영역 스타일 */
-header {
-    border-bottom: 1px solid #e0e0e0;
-}
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 0;
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-.header-left {
-    display: flex;
-    align-items: center;
-}
-
-.header-left h1 {
-    font-size: 25px;
-    font-weight: bold;
-    color : #343434;
-    font-family: Pretendard-SemiBold;
-}
-
-.header-right {
-    display: flex;
-    align-items: center;
-}
-
-.btn-group {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.header a {
-    color: #333;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 10px 20px;
-    border-radius: 30px;
-    border: 1px solid #333;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    margin-right: 10px;
-}
-
-.header a:hover {
-    background-color: rgb(255, 87, 87);
-    color: white;
-    border-color: rgb(255, 87, 87);
-}
-
-.header a:last-child {
-    margin-right: 0;
 }
 
 /* 글 목록 테이블 스타일 */

@@ -6,41 +6,45 @@
     <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
 </head>
 <body>
-  <header th:fragment="header">
-      <div class="header">
-<!--      이미지 클릭시 메인페이지로 이동 url 채워야됨-->
-          <a th:href="@{/}" class="header--logo">
-              <img th:src="@{/img/logo.png}" alt="">
-          </a>
-    <!--      헤더 이동 탭 컨테이너-->
-          <div class="header--container">
-              <div class="header--sitter-btn">펫시터
-                  <div class="header--sitter-container">
-                      <a th:href="@{/sitter/list}">펫시터 예약</a>
-                      <a th:href="@{/sitter/apply}">펫시터 지원</a>
-                  </div>
-              </div>
-              <a th:href="@{/stroll/list}">모임 게시판</a>
-              <a th:href="@{/recommend/main}">반려동물 추천</a>
-              <a th:href="@{/adopt/adoptionInformation}">반려동물 입양</a>
-          </div>
-    <!--      로그인 회원가입 등 컨테이너-->
-          <div class="header--login-container">
-    <!--          로그인 정보 없을 때-->
-              <th:block th:if="${session.userNumber ==null}">
-              <a th:href="@{/user/join}" class="header--join-btn header--btn header--white-btn">회원가입</a>
-              <a th:href="@{/user/login}" class="header--login-btn header--btn header--blue-btn">로그인</a>
-              </th:block>
-    <!--          로그인 정보 있을 때-->
-              <th:block th:unless="${session.userNumber ==null}">
-              <a href="" class="mypage-btn header-btn white-btn">마이페이지</a>
-              <a th:href="@{/user/logout}" class="logout-btn header-btn blue-btn">로그아웃</a>
-              </th:block>
-
-          </div>
-      </div>
-  </header>
-  <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
-  <script th:src="@{/js/fragment/header.js}"></script>
+<header th:fragment="header">
+    <div class="header">
+        <!--      이미지 클릭시 메인페이지로 이동 url 채워야됨-->
+        <a th:href="@{/}" class="header--logo">
+            <img th:src="@{/img/logo.png}" alt="">
+        </a>
+        <!--      헤더 이동 탭 컨테이너-->
+        <div class="header--container">
+            <div class="header--sub-container">
+                <div class="header--sitter-btn">펫시터
+                    <div class="header--sitter-container">
+                        <a th:href="@{/sitter/list}">펫시터 예약</a>
+                        <a th:href="@{/sitter/apply}">펫시터 지원</a>
+                    </div>
+                </div>
+                <a th:href="@{/stroll/list}">모임 게시판</a>
+                <a th:href="@{/recommend/main}">반려동물 추천</a>
+                <a th:href="@{/adopt/adoptionInformation}">반려동물 입양</a>
+                <th:block th:if="${session.adminNumber !=null}">
+                    <a th:href="@{/admin/userManage}">관리자</a>
+                </th:block>
+            </div>
+        </div>
+        <!--      로그인 회원가입 등 컨테이너-->
+        <div class="header--login-container">
+            <!--          로그인 정보 없을 때-->
+            <th:block th:if="${session.userNumber ==null}">
+                <a th:href="@{/user/join}" class="header--join-btn header--btn header--white-btn">회원가입</a>
+                <a th:href="@{/user/login}" class="header--login-btn header--btn header--blue-btn">로그인</a>
+            </th:block>
+            <!--          로그인 정보 있을 때-->
+            <th:block th:unless="${session.userNumber ==null}">
+                <a th:href="@{/myPage/checkPw}" class="mypage-btn header-btn white-btn">마이페이지</a>
+                <a th:href="@{/user/logout}" class="logout-btn header-btn blue-btn">로그아웃</a>
+            </th:block>
+        </div>
+    </div>
+</header>
+<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+<script th:src="@{/js/fragment/header.js}"></script>
 </body>
 </html>

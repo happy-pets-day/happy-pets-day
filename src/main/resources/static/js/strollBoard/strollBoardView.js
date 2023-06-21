@@ -18,7 +18,7 @@ $(document).ready(function() {
 });
 
 
-// // 댓글 수정 버튼 처리
+// 댓글 수정 버튼 처리
 $('.reply-list-wrap').on('click', '.modify1', function () {
     let $content = $(this).closest('.reply').find('.reply-box__content');
     $content.replaceWith(`
@@ -28,6 +28,11 @@ $('.reply-list-wrap').on('click', '.modify1', function () {
 </div>
 `);
     $('.reply-btns__box').addClass('none');
+});
+
+// 목록 버튼
+$('.list-btn').on('click',function(){
+    window.location.href = '/stroll/list';
 });
 
 

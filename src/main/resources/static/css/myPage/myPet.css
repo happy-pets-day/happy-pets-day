@@ -151,12 +151,13 @@
 .pet-register {
   font-size: 18px;
   font-weight: bold;
-  z-index: -1;
+  z-index: 1;
   color: #68a5fe;
   position: absolute;
   right: 10px;
   top: -100px;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .swiper-container {

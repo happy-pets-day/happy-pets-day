@@ -16,6 +16,6 @@ public class Criteria {
 //    만약 page, amount에 대한 데이터가 URL을 통해 들어온다면 criteria 객체의 setter가 실행된다.
 //    page만 들어와도 amount는 기본생성자에 의해 12로 초기화가 된다.
     public Criteria() {
-        this(1,12);
+        this(1,10);
     }
 }

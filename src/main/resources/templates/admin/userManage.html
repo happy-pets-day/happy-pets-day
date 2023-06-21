@@ -4,60 +4,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>관리자 | 전체회원관리</title>
+  <title>전체회원관리</title>
   <link rel="stylesheet" th:href="@{/css/admin/userManage.css}">
+  <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
+  <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
 </head>
 
 <body>
-<header class="real-header">header (기존헤더에 '관리자' 메뉴만 추가)</header>
+<header th:replace="fragment/adminHeader :: adminHeader"></header>
+
 <div class="whole-container">
 
-  <div class="side-menubar">
-    <div class="top-leftmenu">
-      <div class="left-menu1"><b>관리자</b>의</div>
-      <div class="left-menu2">관리페이지</div>
-    </div>
-    <ul class="admin-side-menu">
-      <li>
-        <a href="" class="menu-a">전체회원 관리</a>
-      </li>
-      <li>
-        <a href="" class="menu-a">펫시터회원 관리</a>
-      </li>
-      <li>
-        <a href="" class="menu-a">펫시터 신청 관리</a>
-      </li>
-      <li>
-        <a href="" class="menu-a">산책모임게시판 관리</a>
-      </li>
-    </ul>
-  </div>
+  <div class="side-menubar" th:replace="fragment/adminSideBar :: adminSideBar"></div>
 
   <div class="content-container">
-    <div class="menu-category">
-      <div class="inner-wrap">
-        <div class="menu1">
-          <div class="whole-user">전체회원</div>
-          <strong class="whole-user-number">200</strong>
-        </div>
-        <div class="divide-bar"></div>
-        <div class="menu2">
-          <div class="basic-user">일반회원</div>
-          <strong class="basic-user-number">180</strong>
-        </div>
-        <div class="divide-bar"></div>
-        <div class="menu3">
-          <div class="whole-petsitter">펫시터회원</div>
-          <strong class="whole-petsitter-number">17</strong>
-        </div>
-        <div class="divide-bar"></div>
-        <div class="menu4">
-          <div class="unapproved-petsitter">펫시터 미승인</div>
-          <strong class="unapproved-petsitter-number">3</strong>
-        </div>
-      </div>
-
-    </div>
+    <div class="menu-category" th:replace="fragment/adminStatistics :: adminStatistics"></div>
 
     <h2 class="guide-menu">전체회원 관리</h2>
     <div class="bottom-bar"></div>
@@ -139,6 +100,9 @@
 
 
   </div>
+  </div>
+
+<footer th:replace="fragment/adminFooter :: adminFooter"></footer>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script th:src="@{/js/admin/userManage.js}"></script>
 </body>
