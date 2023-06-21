@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.happypetsday.mapper.SitterApplyLicenseFileMapper">
+
+    <insert id="insert">
+        INSERT INTO TBL_SITTER_APPLY_LICENSE_FILE (APPLY_FILE_NUMBER, APPLY_FILE_TITLE, APPLY_FILE_NAME, APPLY_FILE_UUID,
+                                                   APPLY_FILE_UPLOAD_PATH, APPLY_NUMBER, SITTER_NUMBER)
+        VALUES (SEQ_SITTER_APPLY_LICENSE.NEXTVAL, #{applyFileTite}, #{applyFileName}, #{applyFileUuId}
+               , #{applyFileUploadPath}, #{applyNumber}, #{sitterNumber})
+    </insert>
+
+    <delete id="delete">
+        DELETE FROM TBL_SITTER_APPLY_LICENSE_FILE
+        WHERE APPLY_NUMBER = #{applyNumber}
+    </delete>
+
+    <select id="select">
+        SELECT APPLY_FILE_NUMBER, APPLY_FILE_TITLE, APPLY_FILE_NAME,
+        APPLY_FILE_UUID, APPLY_FILE_UPLOAD_PATH, APPLY_NUMBER, SITTER_NUMBER FROM TBL_SITTER_APPLY_LICENSE_FILE
+        WHERE APPLY_NUMBER = #{applyNumber}
+    </select>
+    
+</mapper>
