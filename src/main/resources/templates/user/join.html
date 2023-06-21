@@ -89,31 +89,35 @@
                             <h5>주소</h5>
                             <input
                                     type="text"
-                                    id="select_postcode"
+                                    id="userZoneCode"
                                     placeholder="우편번호"
                                     onclick="selectAddress()"
                                     class="required"
+                                    name="userZoneCode"
                             />
                             <input
                                     type="text"
-                                    id="select_address"
+                                    id="userAddress"
                                     placeholder="주소"
                                     class="required"
                                     style="margin-top: 10px"
+                                    name="userAddress"
                             /><br/>
                             <input
                                     type="text"
-                                    id="select_detailAddress"
+                                    id="userAddressDetail"
                                     placeholder="상세주소"
                                     class="required"
                                     style="margin-top: 10px"
+                                    name="userAddressDetail"
                             />
                             <input
                                     type="text"
-                                    id="select_extraAddress"
+                                    id="userAddressTip"
                                     placeholder="참고항목"
                                     class="required"
                                     style="margin-top: 10px"
+                                    name="userAddressTip"
                             />
 
                             <p class="confirmMsg"></p>
@@ -132,6 +136,7 @@
                                     class="required"
                                     placeholder="아이디를 입력해주세요."
                                     id="id"
+                                    onblur="checkUserIdAvailability(this.value)"
                             />
 <!--                                    pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,12}$"-->
                             <p class="confirmMsg"></p>
@@ -190,8 +195,9 @@
                                             type="hidden"
                                             name="questionNumber"
                                             class="questionNumber"
-                                            value="1"
+                                            value=""
                                     />
+
                                     <ul
                                             class="select-list"
                                             id="selectList"

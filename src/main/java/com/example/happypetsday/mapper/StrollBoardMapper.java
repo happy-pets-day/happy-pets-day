@@ -1,8 +1,11 @@
 package com.example.happypetsday.mapper;
 
 import com.example.happypetsday.dto.StrollBoardDto;
+import com.example.happypetsday.vo.Criteria;
 import com.example.happypetsday.vo.StrollBoardVo;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 @Mapper
 public interface StrollBoardMapper {
@@ -14,6 +17,8 @@ public interface StrollBoardMapper {
     void updateViewCount(Long strollBoardNumber);
 //    전체 게시글 수 조회
     int selectTotal();
+//    전체 게시글 조회
+    List<StrollBoardVo> selectAll(Criteria criteria);
 
 
 }

@@ -60,13 +60,13 @@
           </div>
 
           <!-- 입력한 비밀번호가 일치하면 회원정보로 이동 -->
-          <form action="#" method="POST">
+          <form th:action="@{/myPage/myPage}" method="POST">
             <h4>비밀번호</h4>
             <div id="wrap-password">
               <input
                 class="pw-input"
                 type="password"
-                name=""
+                name="userPassword"
                 placeholder="비밀번호를 입력해주세요"
                 maxlength="24"
                 required

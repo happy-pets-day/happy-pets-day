@@ -38,7 +38,7 @@
             </th:block>
             <!--          로그인 정보 있을 때-->
             <th:block th:unless="${session.userNumber ==null}">
-                <a href="" class="mypage-btn header-btn white-btn">마이페이지</a>
+                <a th:href="@{/myPage/checkPw}" class="mypage-btn header-btn white-btn">마이페이지</a>
                 <a th:href="@{/user/logout}" class="logout-btn header-btn blue-btn">로그아웃</a>
             </th:block>
         </div>

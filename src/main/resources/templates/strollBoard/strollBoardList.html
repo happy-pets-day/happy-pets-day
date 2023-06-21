@@ -58,38 +58,39 @@
             <!-- ========== 게시글 목록 예시 =========== -->
 
 
-            <!-- <th:block th:if="${not #lists.isEmpty(boardList)}">
-                <tr th:each="board : ${boardList}"> -->
-            <td class="no">1</td>
-            <td class="title">
-                <a href="#">
-                    게시물 제목
-                </a>
-            </td>
-            <td class="author">aa123</td>
-            <td class="date">2023-06-08</td>
-            <td class="location">서울시 강남구</td>
-            </tr>
-            <!-- </th:block>
-            <th:block th:unless="${not #lists.isEmpty(boardList)}"> -->
-            <tr>
-                <td colspan="5" align="center">등록된 게시물이 없습니다.</td>
-            </tr>
-            <!-- </th:block> -->
+            <th:block th:unless="${#lists.isEmpty(boardList)}">
+                <tr th:each="board : ${boardList}">
+                    <td class="no" th:text="${board.strollBoardNumber}"></td>
+                    <td class="title">
+                        <a th:href="@{/stroll/view(strollBoardNumber=${board.strollBoardNumber})}"
+                           th:text="${board.strollBoardTitle}"></a>
+                    </td>
+                    <td class="author" th:text="${board.userId}"></td>
+                    <td class="date" th:text="${board.strollBoardMeetingDate}"></td>
+                    <td class="location" th:text="${board.strollBoardAdminDistrict}"></td>
+                </tr>
+            </th:block>
+            <th:block th:if="${#lists.isEmpty(boardList)}">
+                <tr>
+                    <td colspan="5" align="center">등록된 게시물이 없습니다.</td>
+                </tr>
+            </th:block>
 
             <!-- ========== /게시글 목록 예시 =========== -->
-            </tbody>
+
         </table>
         <div class="pagination">
             <ul>
                 <!-- ========== 페이징 처리 예시 ============ -->
-                <li><a href="#" class="prev">&lt;</a></li>
-                <li><a href="#" class="active">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#" class="next">&gt;</a></li>
+                <li  th:if="${pageInfo.prev}"><a th:href="@{/stroll/list(page=${pageInfo.startPage-1})}" class="prev">&lt;</a></li>
+
+                <th:block th:each="i : ${#numbers.sequence(pageInfo.startPage, pageInfo.endPage)}">
+                <li th:if="${i == pageInfo.criteria.page}"><a th:href="@{/stroll/list/(page=${i})}" class="active" th:text="${i}"></a></li>
+                <li th:unless="${i == pageInfo.criteria.page}"><a th:href="@{/stroll/list/(page=${i})}" th:text="${i}"></a></li>
+                </th:block>
+
+
+                <li th:if="${pageInfo.next}"><a th:href="@{/stroll/list(page=${pageInfo.endPage+1})}" class="next">&gt;</a></li>
                 <!-- ========== /페이징 처리 예시 ============ -->
             </ul>
         </div>
@@ -97,7 +98,7 @@
 </div>
 
 <footer th:replace="fragment/footer :: footer"></footer>
-
+<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 <script th:src="@{/js/fragment/header.js}"></script>
 </body>
 

@@ -33,6 +33,9 @@ class UserMapperTest {
         userDto.setUserAddress("인천 중구");
         userDto.setQuestionNumber(2);
         userDto.setFindPasswordAnswer("강아지");
+        userDto.setUserZoneCode(467);
+        userDto.setUserAddressDetail("303호");
+        userDto.setUserAddressTip("면목동");
     }
 
     @Test
@@ -44,5 +47,17 @@ class UserMapperTest {
 
         assertThat(userDto.getUserNumber()).isEqualTo(findUser.getUserNumber());
         assertThat(findUser.getUserStatus()).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("비밀번호 검사 테스트")
+    void selectUserPasswordByUserNumber(){
+        assertThat(userMapper.selectUserPasswordByUserNumber(2L)).isEqualTo("1234");
+    }
+
+    @Test
+    @DisplayName("유저 정보 뽑아오기 마이페이지용")
+    void selectUserInfoByUserNumber(){
+        assertThat(userMapper.selectUserInfoByUserNumber(2L).getUserPassword()).isEqualTo("1234");
     }
 }
