@@ -8,16 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
 
 @SpringBootTest
 @Slf4j
 @Transactional
-class SitterMapperTest {
+class SitterApplyMapperTest {
 
     @Autowired
-    private SitterMapper sitterMapper;
+    private SitterApplyMapper sitterApplyMapper;
     private SitterApplyDto sitterApplyDto;
 
     @BeforeEach
@@ -26,10 +25,18 @@ class SitterMapperTest {
 
         sitterApplyDto.setUserNumber(3L);
         sitterApplyDto.setApplyContent("asd");
+
+//        sitterMapper.apply(sitterApplyDto);
     }
 
     @Test
     void apply() {
-        sitterMapper.apply(sitterApplyDto);
+        sitterApplyMapper.apply(sitterApplyDto);
+        assertThat(sitterApplyMapper.selectApplyNumber(sitterApplyDto.getUserNumber()))
+                .isEqualTo(sitterApplyDto.getApplyNumber());
+    }
+
+    @Test
+    void selectApplyNumber(){
     }
 }

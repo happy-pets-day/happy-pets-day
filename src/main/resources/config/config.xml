@@ -5,6 +5,8 @@
     <typeAliases>
         <typeAlias type="com.example.happypetsday.dto.UserDto" alias="userDto"/>
         <typeAlias type="com.example.happypetsday.dto.SitterApplyDto" alias="sitterApplyDto"/>
+        <typeAlias type="com.example.happypetsday.dto.SitterApplyLicenseFile" alias="sitterApplyLicenseFile"/>
+
     </typeAliases>
 
 </configuration>
