@@ -11,4 +11,6 @@ public class AdoptController {
     public String AdoptionInformation(){
         return "AdoptionInformation/AdoptionInformation";
     }
+    @GetMapping("/detail")
+    public String detail(){return "AdoptionInformation/adoptDetail";}
 }

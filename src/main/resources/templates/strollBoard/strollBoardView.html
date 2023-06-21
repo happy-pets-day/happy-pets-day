@@ -2,193 +2,191 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>strollBoarddView</title>
-  <link rel="stylesheet" th:href="@{/css/strollBoard/strollBoardView.css}">
-  <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
-  <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>strollBoardView</title>
+    <link rel="stylesheet" th:href="@{/css/strollBoard/strollBoardView.css}">
+    <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
+    <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
 
 </head>
 
 <body>
-  <!-- 헤더부분 -->
+<!-- 헤더부분 -->
 
-  <header th:replace="fragment/header :: header"></header>
+<header th:replace="fragment/header :: header"></header>
 
-  <div class="globar-content-wrap">
+<div class="globar-content-wrap" th:object="${board}">
     <!-- 산책모임 게시글 번호 -->
-    <input type="hidden" class="stroll-board-number" name="strollBoardNumber" value="산책게시글 번호">
+    <input type="hidden" class="stroll-board-number" name="strollBoardNumber" th:value="*{strollBoardNumber}">
     <!-- 제목영역 -->
     <div class="board-view-title-wrap">
 
-      <div class="title-container">
-        <div class="administrative-district">
-          <!-- 행정구역 -->
-          서울시 강남구
+        <div class="title-container">
+            <div class="administrative-district" th:text="*{strollBoardAdminDistrict}">
+            </div>
+
+            <!-- 게시글 제목 -->
+            <div class="board-title" th:text="*{strollBoardTitle}">
+            </div>
+
+            <!-- 게시글 등록, 수정날짜 영역 -->
+            <div class="board-register-and-update-wrap">
+                <div class="board-info"
+                     th:text="'작성자 : '+ *{userId} + ' | 등록일 : ' + *{strollBoardRegisterDate}+ ' | 수정일 : ' + *{strollBoardUpdateDate}">
+                </div>
+
+                <!-- 모임 날짜 -->
+                <div class="meeting-date">
+                    산책 날짜 : <b th:text="*{strollBoardMeetingDate}"></b>
+                </div>
+                <span class="view-count">조회수 : <th:block th:text="*{strollBoardViewCount}"></th:block></span>
+            </div>
+
         </div>
-
-        <!-- 게시글 제목 -->
-        <div class="board-title">
-          제목
-        </div>
-
-        <!-- 게시글 등록, 수정날짜 영역 -->
-        <div class="board-register-and-update-wrap">
-          <div class="board-info">
-            작성자 : 작성자 이름 | 등록일 : 2023-05-24 | 수정일 : 2023-05-24
-          </div>
-
-          <!-- 모임 날짜 -->
-          <div class="meeting-date">
-            산책 날짜 : <b>2023-06-14</b>
-          </div>
-          <span class="view-count">조회수 : 14</span>
-        </div>
-
-      </div>
     </div>
 
 
     <!-- 게시글 내용 영역 -->
     <div class="board-view-content-wrap">
-      <div class="board-content">
-        <!-- 게시글 내용 -->
-        게시글 내용 이다~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~게시글 내용 이다~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~게시글 내용
-        이다~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~게시글 내용 이다~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~게시글 내용
-        이다~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~게시글 내용 이다~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~게시글 내용
-        이다~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        https://www.naver.com/
-      </div>
+        <div class="board-content" th:text="*{strollBoardContent}"></div>
     </div>
-
-
     <!-- 카카오 지도 api영역 -->
     <div class="kakao-map-api-wrap">
-      <div id="map"></div>
+        <div id="map"></div>
     </div>
 
     <!-- 같이 산책할 동물의 정보 -->
     <div class="my-pet-info-container">
-      <b>같이 산책할 대표 동물</b>
+        <b>같이 산책할 대표 동물</b>
 
-      <div class="swiper-container">
-        <div class="animal-swiper">
-          <div class="profile-card">
-            <div class="profile-info">
+        <div class="swiper-container">
+            <div class="animal-swiper">
+                <div class="profile-card">
+                    <div class="profile-info">
+                        <!-- 이미지 분기처리 -->
+                        <th:block th:if="*{petFileName==null}" >
+                         <img src="https://lifet.co.kr/img/profile/default.png" alt="" class="default-profile">
+                        </th:block>
 
-              <!-- 이미지 분기처리 -->
-              <img src="https://cdn.greenpostkorea.co.kr/news/photo/201610/67579_51594_art_1475555843.jpg" alt=""
-                class="default-profile">
-              <!-- <img src="https://lifet.co.kr/img/profile/default.png" alt="" class="default-profile"> -->
+                        <th:block th:unless="*{petFileName==null}">
+                        <!-- 펫 등록 완료되면 이미지 경로 수정하기 db에서는 다 가져왔음-->
+                        <img src="https://lifet.co.kr/img/profile/default.png"
+                             alt=""
+                             class="default-profile">
+                        </th:block>
 
+                    </div>
+                    <div class="profile-info2">
+                        <div class="name">이름 :<b th:text="*{petName}"></b></div>
+                        <div class="kind">동물 종류 :<b th:text="*{petKind}"></b></div>
+                        <div class="detailed-kind">품종 :<b th:text="*{petDetailedType}"></b></div>
+                        <div class="birth">생일 :<b th:text="*{petBirth}"></b></div>
+                        <div class="gender">성별 :<b th:text="*{petGender}"></b></div>
+                        <div class="surgery">중성화 :<b th:text="*{petSurgery}"></b></div>
+                    </div>
+                </div>
 
             </div>
-            <div class="profile-info2">
-              <div class="name">이름 :<b> 백설이</b></div>
-              <div class="kind">동물 종류 :<b> 강아지</b></div>
-              <div class="detailed-kind">품종 :<b> 웰시코기</b></div>
-              <div class="birth">생일 :<b>2018-06-08</b> </div>
-              <div class="gender">성별 :<b>M</b> </div>
-              <div class="surgery">중성화 :<b>중성화 완료</b> </div>
-            </div>
-          </div>
-
         </div>
-      </div>
     </div>
 
     <!-- 게시글 수정, 삭제 버튼 영역 -->
     <div class="board-modify-delete-btn-wrap">
 
-      <div class="modify-delete-box">
-        <button type="button" class="board-modify-btn control-btn">
-          수정
-        </button>
-        <button type="button" class="board-delete-btn control-btn">
-          삭제
-        </button>
-        <button type="button" class="control-btn">
-          목록
-        </button>
-      </div>
+        <div class="modify-delete-box">
+            <button type="button" class="board-modify-btn control-btn">
+                수정
+            </button>
+            <button type="button" class="board-delete-btn control-btn">
+                삭제
+            </button>
+            <button type="button" class="control-btn">
+                목록
+            </button>
+        </div>
 
 
     </div>
     <!-- 게시글 댓글 영역 -->
     <div class="board-reply-wrap">
-      <!-- 댓글 작성 -->
-      <div class="reply-write-wrap">
-        <div class="reply-count-box">
-          댓글 <b class="reply-count">0</b>
-        </div>
-
-        <div class="reply-write-box">
-          <textarea name="strollReplyContent" id="reply-content" placeholder="댓글을 입력해주세요"></textarea>
-          <button type="button" class="reply-write-btn">
-            댓글 작성
-          </button>
-        </div>
-      </div>
-
-
-      <div class="reply-list-wrap">
-        <!-- 댓글 반복 시작 -->
-        <div class="reply">
-          <div class="reply-box">
-            <div class="reply-info-box">
-            <div class="reply-box__writer">
-              댓글 작성자 아이디
+        <!-- 댓글 작성 -->
+        <div class="reply-write-wrap">
+            <div class="reply-count-box">
+                댓글 <b class="reply-count">0</b>
             </div>
-            <div class="reply-date">
-              1분전
+
+            <div class="reply-write-box">
+                <textarea name="strollReplyContent" id="reply-content" placeholder="댓글을 입력해주세요"></textarea>
+                <button type="button" class="reply-write-btn">
+                    댓글 작성
+                </button>
             </div>
-          </div>
-            <!-- 댓글 번호 -->
-            <input type="hidden" class="reply-number" name="strollReplyNumber" value="댓글 번호">
-
-            <div class="reply-box__content">댓글내용댓글내용댓글내용댓글내용댓글내용댓글내용댓글내용</div>
-          </div>
-          <div class="reply-btn-box">
-            <span class="reply-btns"></span>
-
-            <!-- 댓글 수정, 삭제 버튼 -->
-            <article class="edit-box none">
-              <div class="select-box">
-                <div class="btn-list">
-                  <button type="button" class="modify1 reply-control-btn">수정
-                    <img src="https://lifet.co.kr/img/icon/icon_modify.svg" alt="" />
-                  </button>
-                </div>
-                <div class="btn-list">
-                  <button type="button" class="delete1 reply-control-btn">삭제
-                    <img src="https://lifet.co.kr/img/icon/icon_del.svg" alt="" />
-                  </button>
-                </div>
-              </div>
-            </article>
-
-          </div>
         </div>
-        <!-- 댓글 반복 끝 -->
 
 
+        <div class="reply-list-wrap">
+            <!-- 댓글 반복 시작 -->
+            <div class="reply">
+                <div class="reply-box">
+                    <div class="reply-info-box">
+                        <div class="reply-box__writer">
+                            댓글 작성자 아이디
+                        </div>
+                        <div class="reply-date">
+                            1분전
+                        </div>
+                    </div>
+                    <!-- 댓글 번호 -->
+                    <input type="hidden" class="reply-number" name="strollReplyNumber" value="댓글 번호">
 
-      </div>
+                    <div class="reply-box__content">댓글내용댓글내용댓글내용댓글내용댓글내용댓글내용댓글내용</div>
+                </div>
+                <div class="reply-btn-box">
+                    <span class="reply-btns"></span>
 
+                    <!-- 댓글 수정, 삭제 버튼 -->
+                    <article class="edit-box none">
+                        <div class="select-box">
+                            <div class="btn-list">
+                                <button type="button" class="modify1 reply-control-btn">수정
+                                    <img src="https://lifet.co.kr/img/icon/icon_modify.svg" alt=""/>
+                                </button>
+                            </div>
+                            <div class="btn-list">
+                                <button type="button" class="delete1 reply-control-btn">삭제
+                                    <img src="https://lifet.co.kr/img/icon/icon_del.svg" alt=""/>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+            <!-- 댓글 반복 끝 -->
+
+
+        </div>
 
 
     </div>
 
 
-  </div>
+</div>
 
-  <footer th:replace="fragment/footer :: footer"></footer>
-  <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
-  <!-- 카카오지도 api js -->
-  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3dc12d7c2624483dc7c019a0a91b727f&libraries=services"></script>
-  <script th:src="@{/js/strollBoard/boardViewKakaoMapApi.js}"></script>
-  <script th:src="@{/js/strollBoard/strollBoardView.js}"></script>
+<footer th:replace="fragment/footer :: footer"></footer>
+<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+<script>
+    const boardLat = [[${board.strollBoardLat}]];
+    const boardLng = [[${board.strollBoardLng}]];
+    const place = `[[${board.strollBoardMeetingPlace}]]`;
+</script>
+<!-- 카카오지도 api js -->
+<script type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3dc12d7c2624483dc7c019a0a91b727f&libraries=services"></script>
+<script th:src="@{/js/fragment/header.js}"></script>
+<script th:src="@{/js/strollBoard/boardViewKakaoMapApi.js}"></script>
+<script th:src="@{/js/strollBoard/strollBoardView.js}"></script>
 </body>
 
 </html>

@@ -7,7 +7,7 @@
 }
 
 /* 전체 body 스타일 */
-body {
+.body {
   display: flex;
   justify-content: center;
 }
@@ -40,6 +40,8 @@ img {
 .header-container {
   padding-top: 132px;
   width: 100%;
+  align-items: center;
+  margin: 0 auto;
   box-sizing: border-box;
   font-family: "Pretendard", -apple-system, Arial, sans-serif;
   -webkit-tap-highlight-color: transparent;
@@ -49,10 +51,11 @@ img {
 .header-nav {
   display: flex;
   justify-content: center;
+  align-items: center;
   height: 120px;
   margin-bottom: 24px;
   border: 1px solid #d8d8d8;
-  border-width: 1px 0;
+  /*border-width: 1px 0;*/
   box-shadow: 6px 3px 6px rgb(0 0 0 / 8%);
 }
 

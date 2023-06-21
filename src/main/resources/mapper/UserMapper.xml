@@ -9,7 +9,7 @@
         VALUES(#{userNumber},#{userId}, #{userPassword}, #{userName}, #{userGender}, #{userEmail}, #{userBirth}, #{userPhoneNumber}, #{userAddress}, #{questionNumber},#{findPasswordAnswer})
     </insert>
 
-    <select id="selectUserNumberAndStatus">
+    <select id="selectUserNumberAndStatus" resultType="userDto">
         SELECT USER_NUMBER ,USER_STATUS  FROM TBL_USER
         WHERE USER_ID =#{userId}  AND USER_PASSWORD=#{userPassword}
     </select>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.happypetsday.mapper.StrollBoardMapper">
+
+    <insert id="insert">
+     <selectKey keyProperty="strollBoardNumber" order="BEFORE" resultType="long">
+         SELECT SEQ_STROLL_BOARD.NEXTVAL FROM DUAL
+     </selectKey>
+        INSERT INTO TBL_STROLL_BOARD
+        (STROLL_BOARD_NUMBER, STROLL_BOARD_TITLE, STROLL_BOARD_CONTENT, STROLL_BOARD_LAT, STROLL_BOARD_LNG, STROLL_BOARD_MEETING_DATE, STROLL_BOARD_MEETING_PLACE, STROLL_BOARD_ADMIN_DISTRICT, STROLL_BOARD_REGISTER_DATE, STROLL_BOARD_UPDATE_DATE, USER_NUMBER, PET_NUMBER)
+        VALUES(#{strollBoardNumber}, #{strollBoardTitle}, #{strollBoardContent}, #{strollBoardLat}, #{strollBoardLng}, #{strollBoardMeetingDate}, #{strollBoardMeetingPlace}, #{strollBoardAdminDistrict},SYSDATE , SYSDATE, #{userNumber}, #{petNumber})
+    </insert>
+
+    <select id="selectOnd" resultType="strollBoardVo">
+        SELECT STROLL_BOARD_NUMBER, STROLL_BOARD_TITLE, STROLL_BOARD_CONTENT, STROLL_BOARD_LAT, STROLL_BOARD_LNG, TO_CHAR(STROLL_BOARD_MEETING_DATE,'YYYY-MM-DD') AS STROLL_BOARD_MEETING_DATE, STROLL_BOARD_MEETING_PLACE, STROLL_BOARD_ADMIN_DISTRICT,
+               TO_CHAR(STROLL_BOARD_REGISTER_DATE,'YYYY-MM-DD') AS STROLL_BOARD_REGISTER_DATE, TO_CHAR(STROLL_BOARD_UPDATE_DATE,'YYYY-MM-DD') AS STROLL_BOARD_UPDATE_DATE, B.USER_NUMBER,
+               B.PET_NUMBER,PET_NAME, TO_CHAR(PET_BIRTH,'YYYY-MM-DD') AS PET_BIRTH, PET_KIND, PET_DETAILED_TYPE, PET_GENDER, PET_SURGERY,
+               PET_FILE_NAME, PET_FILE_UPLOAD_PATH, PET_FILE_UUID,U.USER_ID, B.STROLL_BOARD_VIEW_COUNT
+        FROM TBL_PET P JOIN TBL_STROLL_BOARD B
+                            ON P.PET_NUMBER = B.PET_NUMBER AND STROLL_BOARD_NUMBER  = #{strollBoardNumber}
+                       JOIN TBL_USER U
+                            ON B.USER_NUMBER =U.USER_NUMBER
+                       LEFT JOIN TBL_PET_FILE PF
+                                 ON P.PET_NUMBER =PF.PET_NUMBER
+    </select>
+
+    <update id="updateViewCount">
+        UPDATE TBL_STROLL_BOARD
+        SET STROLL_BOARD_VIEW_COUNT = STROLL_BOARD_VIEW_COUNT +1
+        WHERE STROLL_BOARD_NUMBER = #{strollBoardNumber}
+    </update>
+    
+    <select id="selectTotal" resultType="_int">
+        SELECT COUNT(STROLL_BOARD_NUMBER)
+        FROM TBL_STROLL_BOARD
+    </select>
+
+
+
+
+</mapper>

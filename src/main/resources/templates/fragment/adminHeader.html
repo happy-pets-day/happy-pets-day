@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
+</head>
+<body>
+<header th:fragment="adminHeader">
+    <div class="header">
+        <!--      이미지 클릭시 메인페이지로 이동 url 채워야됨-->
+        <a th:href="@{/admin/userManage}" class="header--logo">
+            <img th:src="@{/img/logo.png}" alt="">
+        </a>
+        <!--      로그인 회원가입 등 컨테이너-->
+        <div class="header--login-container">
+            <!--          로그인 정보 없을 때-->
+            <th:block th:if="${session.userNumber ==null}">
+                <a th:href="@{/user/login}" class="header--login-btn header--btn header--blue-btn">로그인</a>
+            </th:block>
+            <!--          로그인 정보 있을 때-->
+            <th:block th:unless="${session.userNumber ==null}">
+                <a th:href="@{/user/logout}" class="logout-btn header-btn blue-btn">로그아웃</a>
+            </th:block>
+
+        </div>
+    </div>
+</header>
+<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+</body>
+</html>

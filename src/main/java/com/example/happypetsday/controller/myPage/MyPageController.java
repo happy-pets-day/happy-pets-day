@@ -15,7 +15,7 @@ public class MyPageController {
         return "myPage/addPet";
     }
 
-    @GetMapping("/myPage")
+    @GetMapping("/main")
     public String myPage() { return "myPage/myPage"; }
 
     @GetMapping("/myPet")

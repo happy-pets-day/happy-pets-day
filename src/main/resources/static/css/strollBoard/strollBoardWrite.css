@@ -78,10 +78,34 @@ input:focus {
   margin-bottom: 15px;
 }
 
+.my-pet-list-box{
+  height: 85px;
+  width: 100%;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+
 .my-pet-list{
   display: flex;
   margin-left: 5px;
 }
+
+.meeting-place-input{
+  padding-top: 15px;
+  color: #343434;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.meeting-place-input .meeting-input {
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0px 0px 5px 2px rgba(177, 180, 198, 0.2);
+  -webkit-box-shadow: 0px 0px 5px 2px rgba(177, 180, 198, 0.2);
+}
+
 
 
 
@@ -191,6 +215,7 @@ textarea{
   align-items: center;
 }
 
+.meeting-input,
 .search-input{
   border-radius: 5px;
   border: 1px solid #D2D2D2;

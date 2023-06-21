@@ -6,19 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Board</title>
     <link rel="stylesheet" th:href="@{/css/AdoptionInformation/AdoptionInformation.css}" />
-    <link rel="stylesheet" th:href="@{/js/AdoptionInformation/AdoptionInformation.js}"  />
+    <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
+    <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
     <link
       rel="stylesheet"
       as="style"
       crossorigin
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css"
     />
-    <script
-      src="https://kit.fontawesome.com/85b8cbcba2.js"
-      crossorigin="anonymous"
-    ></script>
   </head>
   <body>
+  <header th:replace="fragment/header :: header"></header>
+    <div class="body">
     <div class="main">
       <div class="header-container">
         <ul class="header-nav">
@@ -226,5 +225,15 @@
         </div>
       </div>
     </div>
+    </div>
+
+    <footer th:replace="fragment/footer :: footer"></footer>
+
+    <script
+            src="https://kit.fontawesome.com/85b8cbcba2.js"
+            crossorigin="anonymous"
+    ></script>
+    <script th:src="@{/js/fragment/header.js}"></script>
+    <script th:src="@{/js/AdoptionInformation/AdoptionInformation.js}"></script>
   </body>
 </html>

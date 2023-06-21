@@ -23,7 +23,7 @@
 <header th:replace="fragment/header :: header"></header>
   <div class="globar-content-wrap">
 
-    <form class="board-form" action="#" method="get" >
+    <form class="board-form" th:action="@{/stroll/write}" method="post" >
 
       <!-- 제목부분 -->
       <div class="title-wrap">
@@ -31,7 +31,7 @@
           글 작성
         </div>
         <div class="title-write-input">
-          <input class="title-input" type="text" name="strollBOardTitle" placeholder="제목을 입력해주세요" required>
+          <input class="title-input" type="text" name="strollBoardTitle" placeholder="제목을 입력해주세요" required>
         </div>
 
       </div>
@@ -41,23 +41,19 @@
         <div class="my-pet-guide-msg">
           같이 산책할 대표 반려동물 선택
         </div>
-        <div class="my-pet-list-wrap">
-          <ul class="my-pet-list">
+        <div class="my-pet-list-box">
+          <ul class="my-pet-list" >
             <!-- 해당 회원의 반려동물 이름 시작 -->
-            <label>
-              <li class="my-pet">
-                멍뭉이 <input type="radio" class="pet-radio-input" name="petNumber" value="#해당 펫의 번호" required="required">
+            <label th:each="pet : ${petList}">
+              <li class="my-pet" >
+               <th:block th:text="${pet.petName}"/><input type="radio" class="pet-radio-input" name="petNumber" th:value="${pet.petNumber}" required="required">
               </li>
             </label>
-
-            <label>
-              <li class="my-pet">
-                냥냥이 <input type="radio" class="pet-radio-input" name="petNumber" value="#해당 펫의 번호" required="required">
-              </li>
-            </label>
-
             <!-- 해당 회원의 반려동물 목록 끝 -->
           </ul>
+<!--          <div class="meeting-place-input">-->
+<!--            모임 위치 : <input type="text"  class="meeting-input" placeholder="00 공원 앞">-->
+<!--          </div>-->
 
         </div>
       </div>
@@ -85,7 +81,7 @@
 
           <div class="map_wrap">
             <div class="map-search-section">
-              위치 입력 : <input type="text" name="strollBoardMeetingPlace" class="search-input" placeholder="모일 위치를 검색해주세요">
+              위치 검색 : <input type="text" name="strollBoardMeetingPlace" class="search-input" placeholder="모일 위치를 검색해주세요">
               <button type="button" class="search-btn">
                 <i class="fa-solid fa-magnifying-glass" style="color: #343434;"></i>
               </button>
@@ -104,7 +100,7 @@
 
       <!-- 게시글 등록 부분 버튼 부분 -->
       <div class="board-write-btn-wrap">
-        <button class="board-write-btn">
+        <button type="submit" class="board-write-btn">
           글 등록
         </button>
 
@@ -125,7 +121,7 @@
   <!-- 카카오지도Api js -->
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3dc12d7c2624483dc7c019a0a91b727f&libraries=services"></script>
   <script th:src="@{/js/strollBoard/boardWriteKakaoMapApi.js}"></script>
-
+  <script th:src="@{/js/fragment/header.js}"></script>
   <script th:src="@{/js/strollBoard/strollBoardWrite.js}"></script>
 
 </body>
