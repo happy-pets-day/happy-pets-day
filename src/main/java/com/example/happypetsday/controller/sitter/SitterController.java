@@ -51,7 +51,8 @@ public class SitterController {
 
         if(files != null){
             try {
-                sitterApplyLicenseFileService.registerAndSaveFiles(files, sitterApplyDto.getApplyNumber(), applyFileTitle, sitterApplyDto.getUserNumber());
+                sitterApplyLicenseFileService.registerAndSaveFiles(
+                        files, sitterApplyDto.getApplyNumber(), applyFileTitle, sitterApplyDto.getUserNumber());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -74,4 +75,4 @@ public class SitterController {
         return "sitter/sitterProfile";
     }
 
-}asdasdasdasd
+}
