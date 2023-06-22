@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>myPage-SideBar</title>
+</head>
+<body>
+    <div class="mypage-left" th:fragment="myPageSideBar">
+        <div class="color-text">
+            <span class="font-bold user-name">박광인</span>
+            <span>님의 마이페이지</span>
+        </div>
+
+        <ul>
+            <li>
+                <h3>나의 정보</h3>
+                <a th:href="@{/myPage/myPage}"> 회원정보 관리 </a>
+            </li>
+            <li>
+                <h3>나의 반려동물</h3>
+                <a th:href="@{/myPage/myPet}"> 프로필 관리 </a>
+            </li>
+            <li>
+                <h3>펫시터</h3>
+                <a href="">내 소개</a>
+                <a th:href="@{/myPage/reservationList}">예약 내역 </a>
+                <a th:href="@{/myPage/checkReservation}">예약 확인 </a>
+            </li>
+            <li>
+                <h3>나의 게시물</h3>
+                <a th:href="@{/myPage/strollList}">산책 모임</a>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -50,8 +50,8 @@ function selectAddress() {
   }).open();
 }
 
-// 생년월일 입력 datepicker
 $(".datepicker").datepicker();
+// 생년월일 입력 datepicker
 
 $.datepicker.setDefaults({
   dateFormat: "yy-mm-dd",
