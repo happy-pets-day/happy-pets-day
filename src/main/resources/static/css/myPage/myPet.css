@@ -170,8 +170,8 @@
   /* border: 1px solid rgb(216, 213, 213); */
   box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.08);
   border-radius: 10px;
-  margin: 0 20px 0 0;
-  width: 363px;
+  margin: 0 40px 40px 0;
+  width: 300px;
   height: 203px;
   display: flex;
   flex-wrap: wrap;
@@ -180,59 +180,48 @@
 
 .menu-dot {
   position: relative;
-  left: 340px;
-  top: -135px;
+  left: 272px;
+  top: -130px;
   background: url(https://lifet.co.kr/img/icon/dot.svg);
   border: none;
   cursor: pointer;
 }
 
 .default-profile {
-  width: 130px;
-  height: 130px;
+  width: 120px;
+  height: 120px;
 }
 
 .profile-info2 {
-  margin: 0 0 0 30px;
+  margin: 0 0 0 15px;
 }
 
 .card2-a {
   text-decoration: none;
   color: rgb(184, 181, 181);
+  position: relative;
+  top: 35px;
 }
 
 .profile-card2 {
   /* border: 1px solid rgb(216, 213, 213); */
   box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.08);
   border-radius: 10px;
-  width: 363px;
+  width: 300px;
   height: 203px;
   text-align: center;
 }
 
-.circle {
-  margin: 10px 0 10px 105px;
-  /* border: 1px solid black; */
-  border-radius: 50%;
-  width: 150px;
-  height: 150px;
-  text-align: center;
-  background-color: #f0eded;
-}
-
-.plus {
-  font-size: 130px;
-  margin: 0 auto;
-  font-weight: 10;
-}
-
 .add-profile {
   font-family: Pretendard-Regular;
+  margin: 10px 0 0 0;
 }
 
 .profile-info2 > div {
   font-family: Pretendard-Regular;
   margin: 0 0 5px 0;
+  font-size: 14px;
+  color : #343434;
 }
 
 .animal-swiper {
@@ -353,7 +342,7 @@
 #uploaded-image {
   width: 200px;
   height: 200px;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 50%;
 }
 

@@ -4,7 +4,7 @@
 
     <select id="selectUserOne">
         SELECT USER_NUMBER, USER_STATUS, USER_ID, USER_NAME, USER_GENDER, USER_EMAIL, USER_BIRTH, USER_PHONE_NUMBER, USER_ADDRESS
-        FROM HPD.TBL_USER
+        FROM TBL_USER
         WHERE USER_NUMBER =#{userNumber}
     </select>
 
@@ -28,5 +28,11 @@
     <select id="selectTotal" resultType="_int">
         SELECT COUNT(USER_NUMBER) FROM TBL_USER
     </select>
+
+    <update id="update">
+        UPDATE TBL_USER
+        SET USER_STATUS = #{userStatus}
+        WHERE USER_NUMBER = #{userNumber}
+    </update>
 
 </mapper>

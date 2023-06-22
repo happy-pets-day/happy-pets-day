@@ -1,11 +1,31 @@
+
+let tmpEditBox = null;
+
 // 메뉴버튼(수정,삭제) 누를 시 수정삭제창 나타나고 다른 곳 클릭하면 사라지기
 $("body").on("click", function (event) {
-  if ($(event.target).hasClass("menu-dot-img")) {
-    $(".edit-box").css("display", "block");
-  } else {
-    $(".edit-box").css("display", "none");
+
+  let target = $(event.target);
+  let editBox = target.closest('.animal-swiper').find('.edit-box');
+
+  if (target.hasClass("menu-dot-img")) {
+    if(tmpEditBox){
+      tmpEditBox.css("display", "none");
+    }
+    editBox.css("display", "block");
+    tmpEditBox = editBox;
+  } else{
+    console.log('none')
+    tmpEditBox.css("display", "none");
   }
 });
+
+
+
+
+
+
+
+
 
 // 삭제버튼 누를 시 alert창
 $(".delete1").on("click", function () {

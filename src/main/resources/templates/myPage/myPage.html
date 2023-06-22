@@ -30,17 +30,44 @@
     <!-- 회원정보 -->
     <section id="container">
       <!-- 왼쪽 탭 목록 -->
-      <div class="mypage-left" th:replace="fragment/myPageSideBar :: myPageSideBar"></div>
+      <div class="mypage-left">
+        <div class="color-text">
+          <span class="font-bold user-name">박광인</span>
+          <span>님의 마이페이지</span>
+        </div>
+
+        <!-- 탭 별로 경로설정 -->
+        <ul>
+          <li>
+            <h3>나의 정보</h3>
+            <a href=""> 회원정보 관리 </a>
+          </li>
+          <li>
+            <h3>나의 반려동물</h3>
+            <a href=""> 프로필 관리 </a>
+          </li>
+          <li>
+            <h3>펫시터</h3>
+            <a href="">내 소개</a>
+            <a href="">예약 내역 </a>
+            <a href="">예약 확인 </a>
+          </li>
+          <li>
+            <h3>나의 게시물</h3>
+            <a href="">산책 모임</a>
+          </li>
+        </ul>
+      </div>
 
       <!-- 오른쪽 컨텐츠 -->
       <div class="mypage-right">
         <h2>회원정보 수정</h2>
         <!-- '수정' 클릭 시 이동할 페이지 경로 -->
-        <form th:action="@{/myPage/edit}" method="post">
+        <form action="#" method="post">
           <div class="contents-wrap">
             <div class="info-wrap">
               <h4>아이디</h4>
-              <input type="text" class="info id" disabled  th:value="${userInfo.userId}"/>
+              <input type="text" class="info id" disabled />
             </div>
             <div class="info-wrap">
               <!-- 비밀번호 변경 방식을 어떻게 할건지 정하자. -->
@@ -49,8 +76,6 @@
                 type="password"
                 class="info password"
                 placeholder="비밀번호(8자이상, 문자/숫자/특수문자 필수 조합)"
-                name="userPassword"
-                th:value="${userInfo.userPassword}"
               />
               <div>
                 <span class="msg check-pw-msg"></span>
@@ -58,28 +83,26 @@
             </div>
             <div class="info-wrap">
               <h4>비밀번호 확인</h4>
-              <input type="password" class="info check-password" th:value="${userInfo.userPassword}"/>
+              <input type="password" class="info check-password" />
               <div>
                 <span class="msg check-pw-msg2"></span>
               </div>
             </div>
             <div class="info-wrap">
               <h4>이름</h4>
-              <input type="text" class="info name" disabled th:value="${userInfo.userName}" />
+              <input type="text" class="info name" disabled />
             </div>
             <div class="info-wrap">
               <h4>성별</h4>
-              <input type="text" class="info gender" disabled value="남자" th:if="${userInfo.userGender == 'M'}"/>
-              <input type="text" class="info gender" disabled value="여자" th:if="${userInfo.userGender == 'F'}"/>
-              <input type="text" class="info gender" disabled th:if="${userInfo.userGender == 'N'}"/>
+              <input type="text" class="info gender" disabled />
             </div>
             <div class="info-wrap">
               <h4>E-MAIL</h4>
-              <input type="text" class="info email" name="userEmail" th:value="${userInfo.userEmail}"/>
+              <input type="text" class="info email" />
             </div>
             <div class="info-wrap">
               <h4>생년월일</h4>
-              <input type="text" class="info birth datepicker" name="userBirth" th:value="${userInfo.userBirth}"/>
+              <input type="text" class="info birth datepicker" />
               <!-- <input type="text" class="info birth datepicker" /> -->
               <!-- <input
                 type="text"
@@ -108,8 +131,6 @@
                 maxlength="11"
                 placeholder="핸드폰 번호(-제외)를 입력해주세요."
                 pattern="[0-9]{3}[0-9]{3,4}[0-9]{4}"
-                name="userPhoneNumber"
-                th:value="${userInfo.userPhoneNumber}"
               />
             </div>
             <div class="info-wrap">
@@ -121,8 +142,6 @@
                   placeholder="우편번호"
                   onclick="selectAddress()"
                   class="required"
-                  name="userZoneCode"
-                  th:value="${userInfo.userZoneCode}"
                 />
                 <input
                   type="text"
@@ -130,8 +149,6 @@
                   placeholder="주소"
                   class="required"
                   style="margin-top: 10px"
-                  name="userAddress"
-                  th:value="${userInfo.userAddress}"
                 /><br />
                 <input
                   type="text"
@@ -139,8 +156,6 @@
                   placeholder="상세주소"
                   class="required"
                   style="margin-top: 10px"
-                  name="userAddressDetail"
-                  th:value="${userInfo.userAddressDetail}"
                 />
                 <input
                   type="text"
@@ -148,8 +163,6 @@
                   placeholder="참고항목"
                   class="required"
                   style="margin-top: 10px"
-                  name="userAddressTip"
-                  th:value="${userInfo.userAddressTip}"
                 />
               </div>
             </div>

@@ -12,6 +12,7 @@
 
 <body>
 <header th:replace="fragment/adminHeader :: adminHeader"></header>
+<!--<header th:replace="fragment/header :: header"></header>-->
 
 <div class="whole-container">
 
@@ -47,35 +48,24 @@
                 <tbody>
                 <!-- ========== 게시글 목록 예시 =========== -->
 
-                <!-- <th:block th:if="${not #lists.isEmpty(userList)}">
-                   <tr th:each="user : ${userList}"> -->
-                <!--                <tr>-->
-                <!--                    <td class="no" th:text="${user.userNumber}"></td>-->
-                <!--                  <td class="user-id" th:text="${user.userId}">-->
-                <!--                        <a th:href="@{/admin/userDetailManage(userNumber=${user.userNumber})}"></a>-->
-                <!--                    </td>-->
-                <!--                    <td class="user-name" th:text="${user.userName}"></td>-->
-                <!--                    <td class="user-level" th:text="${userStatus}"></td>-->
-                <!--                </tr>-->
-                <!-- 더미데이터 예시 -->
-                <tr>
-                    <td class="no">2</td>
-                    <td class="user-id">
-                        <a href="#">
-                            bb123
-                        </a>
-                    </td>
-                    <td class="user-name">김영희</td>
-                    <td class="user-level">펫시터회원</td>
-                </tr>
-                <!-- 더미데이터 예시 -->
+                <th:block th:unless="${#lists.isEmpty(userList)}">
+                <tr th:each="user : ${userList}">
+                    <td class="no" th:text="${user.userNumber}"></td>
 
-                <!-- </th:block>
-                <th:block th:unless="${not #lists.isEmpty(boardList)}"> -->
+                    <td class="user-id">
+                    <a th:href="@{/admin/userDetailManage(userNumber=${user.userNumber})}" th:text="${user.userId}"></a>
+                    </td>
+
+                    <td class="user-name" th:text="${user.userName}"></td>
+                    <td class="user-level" th:text="${user.userStatusResult}"></td>
+                </tr>
+                 </th:block>
+
+                <th:block th:if="${#lists.isEmpty(userList)}">
                 <tr>
                     <td colspan="5" align="center">등록된 회원이 없습니다.</td>
                 </tr>
-                <!-- </th:block> -->
+                 </th:block>
 
                 <!-- ========== /게시글 목록 예시 =========== -->
                 </tbody>
@@ -83,13 +73,16 @@
             <div class="pagination">
                 <ul>
                     <!-- ========== 페이징 처리 예시 ============ -->
-                    <li><a href="#" class="prev">&lt;</a></li>
-                    <li><a href="#" class="active">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#" class="next">&gt;</a></li>
+                    <li th:if="${pageInfo.prev}"><a th:href="@{/admin/userManage(page=${pageInfo.startPage-1})}" class="prev">&lt;</a></li>
+
+                    <th:block th:each="i : ${#numbers.sequence(pageInfo.startPage, pageInfo.endPage)}">
+                        <li th:if="${i == pageInfo.criteria.page}"><a th:href="@{/admin/userManage/(page=${i})}" class="active" th:text="${i}"></a></li>
+                        <li th:unless="${i == pageInfo.criteria.page}"><a th:href="@{/admin/userManage/(page=${i})}" th:text="${i}"></a></li>
+                    </th:block>
+
+
+                    <li th:if="${pageInfo.next}"><a th:href="@{/admin/userManage(page=${pageInfo.endPage+1})}" class="next">&gt;</a></li>
+
                     <!-- ========== /페이징 처리 예시 ============ -->
                 </ul>
             </div>

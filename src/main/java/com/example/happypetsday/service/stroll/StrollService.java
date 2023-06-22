@@ -2,13 +2,11 @@ package com.example.happypetsday.service.stroll;
 
 import com.example.happypetsday.dto.StrollBoardDto;
 import com.example.happypetsday.mapper.StrollBoardMapper;
-import com.example.happypetsday.vo.Criteria;
 import com.example.happypetsday.vo.StrollBoardVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -42,20 +40,6 @@ public class StrollService {
         }
         strollBoardMapper.updateViewCount(strollBoardNumber);
     }
-
-//    전체 게시글 조회
-    @Transactional(readOnly = true)
-    public List<StrollBoardVo> findAll(Criteria criteria){
-        return strollBoardMapper.selectAll(criteria);
-    }
-
-//    전체 게시글 수 조회
-    @Transactional(readOnly = true)
-    public int getTotal(){
-        return strollBoardMapper.selectTotal();
-    }
-
-
 
 
 }

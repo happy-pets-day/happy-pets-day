@@ -7,6 +7,7 @@
         <typeAlias type="com.example.happypetsday.dto.PetDto" alias="petDto"/>
         <typeAlias type="com.example.happypetsday.dto.StrollBoardDto" alias="strollBoardDto"/>
         <typeAlias type="com.example.happypetsday.vo.StrollBoardVo" alias="strollBoardVo"/>
+        <typeAlias type="com.example.happypetsday.vo.UserVo" alias="userVo"/>
     </typeAliases>
 
 </configuration>

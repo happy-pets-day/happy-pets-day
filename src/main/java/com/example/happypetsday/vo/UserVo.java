@@ -1,4 +1,4 @@
-package com.example.happypetsday.dto;
+package com.example.happypetsday.vo;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Data
 @NoArgsConstructor
-public class UserDto {
+public class UserVo {
     private Long userNumber;
     private String userId;
     private String userPassword;
@@ -20,4 +20,5 @@ public class UserDto {
     private int questionNumber;
     private String findPasswordAnswer;
     private int userStatus;
+    private String userStatusResult;
 }

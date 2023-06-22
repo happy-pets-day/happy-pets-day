@@ -113,8 +113,8 @@ document.addEventListener("DOMContentLoaded", function () {
     yearRange: "1930:2023",
   });
 
-  $(".datepicker").datepicker();
   $(".datepicker").on("click", function () {
+    $(".datepicker").datepicker();
   });
 
   // 핸드폰번호 유효성 검사
@@ -157,28 +157,6 @@ document.addEventListener("DOMContentLoaded", function () {
   //     pwConfirmMsg.classList.remove("error");
   //   }
   // });
-
-  function checkUserIdAvailability(userId) {
-    // AJAX 호출을 통해 서버에 아이디 중복 검사 요청
-    $.ajax({
-      url: "/checkUserIdAvailability", // 중복 검사를 수행하는 서버 API 경로
-      method: "GET",
-      data: { userId: userId },
-      success: function(response) {
-        if (response.available) {
-          // 아이디 사용 가능
-          $(".confirmMsg").text("사용 가능한 아이디입니다.").removeClass("error").addClass("success");
-        } else {
-          // 아이디 중복
-          $(".confirmMsg").text("이미 사용 중인 아이디입니다.").removeClass("success").addClass("error");
-        }
-      },
-      error: function() {
-        // 오류 처리
-        $(".confirmMsg").text("중복 검사 중 오류가 발생했습니다.").removeClass("success").addClass("error");
-      }
-    });
-  }
 
   // 비밀번호 확인 유효성 검사
   RepwInput.addEventListener("input", function () {
@@ -230,32 +208,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function toggleSelectList() {
   var selectList = document.getElementById("selectList");
-  selectList.style.display = selectList.style.display === "none" ? "block" : "none";
+  selectList.style.display =
+    selectList.style.display === "none" ? "block" : "none";
 }
 
 function selectQuestion(questionIndex) {
-  var questionText = document.getElementsByClassName("select-item")[questionIndex].innerText;
+  var questionText =
+    document.getElementsByClassName("select-item")[questionIndex].innerText;
   var selectedQuestion = document.getElementById("selectedQuestion");
-  var questionNumberInput = document.querySelector('.questionNumber');
-
   selectedQuestion.innerText = questionText;
-  selectedQuestion.style.color = "black";
-  questionNumberInput.value = questionIndex + 1; // questionIndex에 1을 더하여 대입
+  selectedQuestion.style.color = "black"; // 폰트 색상을 블랙으로 변경
 
-  toggleSelectList();
+  toggleSelectList(); // selectList 숨기기
 }
-
 
 function selectList(select) {
   var selectBox = document.querySelector(".question-select-box");
-  var answer = document.getElementById("answer");
+  var selectedQuestion = document.getElementById("answer");
 
   selectBox.innerHTML = select;
-  answer.value = select;
+  selectedQuestion.value = select;
 
-  toggleSelectList();
+  toggleSelectList(); // selectList 숨기기
 }
-
 
 // 카카오 주소 api
 function selectAddress() {
@@ -294,16 +269,16 @@ function selectAddress() {
           extraAddr = " (" + extraAddr + ")";
         }
         // 조합된 참고항목을 해당 필드에 넣는다.
-        document.getElementById("userAddressTip").value = extraAddr;
+        document.getElementById("select_extraAddress").value = extraAddr;
       } else {
-        document.getElementById("userAddressTip").value = "";
+        document.getElementById("select_extraAddress").value = "";
       }
 
       // 우편번호와 주소 정보를 해당 필드에 넣는다.
-      document.getElementById("userZoneCode").value = data.zonecode;
-      document.getElementById("userAddress").value = addr;
+      document.getElementById("select_postcode").value = data.zonecode;
+      document.getElementById("select_address").value = addr;
       // 커서를 상세주소 필드로 이동한다.
-      document.getElementById("userAddressDetail").focus();
+      document.getElementById("select_detailAddress").focus();
     },
   }).open();
 }

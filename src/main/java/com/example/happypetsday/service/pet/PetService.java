@@ -14,13 +14,7 @@ import java.util.List;
 public class PetService {
     private final PetMapper petMapper;
 
-
-    /**
-     * 회원번호로 펫 리스트 가져오기
-     * @param userNumber
-     * @return
-     * @throws IllegalArgumentException
-     */
+//    회원번호로 펫 리스트 가져오기
     @Transactional
     public List<PetDto> findPet(Long userNumber){
         if(userNumber==null){

@@ -4,8 +4,6 @@ import com.example.happypetsday.dto.PetDto;
 import com.example.happypetsday.dto.StrollBoardDto;
 import com.example.happypetsday.service.pet.PetService;
 import com.example.happypetsday.service.stroll.StrollService;
-import com.example.happypetsday.vo.Criteria;
-import com.example.happypetsday.vo.PageVo;
 import com.example.happypetsday.vo.StrollBoardVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -13,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.RequestDispatcher;
@@ -46,8 +43,6 @@ public class StrollController {
 
 //      산책할 수 있는 반려동물이 없으면 등록페이지로 이동시키기
         if(petList.size()<1){
-            String msg = "먼저 반려동물을 등록해주세요!";
-            model.addAttribute("guideMsg",msg);
             return "myPage/addPet";
         }
         model.addAttribute("petList", petList);
@@ -65,11 +60,7 @@ public class StrollController {
 
 
     @GetMapping("/list")
-    public String strollBoardList(Criteria criteria, Model model){
-        List<StrollBoardVo> boardList = strollService.findAll(criteria);
-
-        model.addAttribute("boardList",boardList);
-        model.addAttribute("pageInfo", new PageVo(criteria, strollService.getTotal()));
+    public String strollBoardList(HttpServletRequest req){
         return "strollBoard/strollBoardList";
     }
 }
