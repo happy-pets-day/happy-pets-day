@@ -14,5 +14,5 @@ public class SitterApplyLicenseFile {
     private String applyFileUuid;
     private String applyFileUploadPath;
     private Long applyNumber;
-    private Long sitterNumber;
+    private Long userNumber;
 }

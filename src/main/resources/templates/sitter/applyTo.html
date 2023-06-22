@@ -21,7 +21,7 @@
     <div style="display: flex; justify-content: center; padding-bottom: 200px">
       <div class="main">
         <p>기본 정보 확인</p>
-        <form th:action="@{/sitter/apply}" method="post">
+        <form th:action="@{/sitter/apply}" method="post" enctype="multipart/form-data">
           <div class="apply-sitter">
             <div class="box-padding">
               <div>
@@ -74,20 +74,18 @@
                       <input
                         type="file"
                         id="post-image"
-                        name=""
+                        name="applyFile"
                         accept="image/*"
                         multiple
                       />
                     </li>
-                    <!-- <li class="img-list"></li> -->
-                    <!-- <div class="input-hidden">
-                      <div class="license-name">
-                        <p>자격증 이름 :</p>
-                      </div>
-                      <input type="text" />
-                    </div> -->
-                    <!-- <li class="img-list"></li>
-                    <li class="img-list"></li> -->
+<!--                    <li class="img-list"></li>-->
+<!--                    <div class="input-hidden">-->
+<!--                      <div class="license-name">-->
+<!--                        <p>자격증 이름 :</p>-->
+<!--                      </div>-->
+<!--                      <input type="text" name="applyFileTitle"/>-->
+<!--                    </div>-->
                   </ul>
                 </div>
               </div>

@@ -11,7 +11,7 @@ $input.on("change", function () {
                       <div class="license-name">
                         <p>자격증 이름 :</p>
                       </div>
-                      <input type="text" />
+                      <input type="text" name="applyFileTitle"/>
                     </div>`);
 
   for (let i = 0; i < files.length; i++) {

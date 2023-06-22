@@ -15,6 +15,7 @@ public class SitterApplyService {
     public void register(SitterApplyDto sitterApplyDto) {
         if(sitterApplyDto==null){throw new IllegalArgumentException("회원정보 누락");}
         sitterApplyMapper.apply(sitterApplyDto);
+
     }
 
 
