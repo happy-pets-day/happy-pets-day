@@ -60,13 +60,22 @@ body{
 }
 
 .content-container img{
-    width: 562px;
-    height: 374px;
+    width: 600px;
+    height: 400px;
     margin-bottom: 50px;
 }
 
 .content{
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    line-height: 30px;
+    font-size: 15px;
+}
+
+.content strong{
+    font-size: 20px;
+    margin: 20px 0;
 }
 
 .list-btn-container{
@@ -87,4 +96,20 @@ body{
     align-items: center;
     color: white;
     font-size: 16px;
+}
+
+.pre-content{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.pre-content-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 50px;
+}
+
+.pre-content span{
+
 }

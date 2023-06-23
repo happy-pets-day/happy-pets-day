@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.happypetsday.mapper.PetFileMapper">
+    <insert id="insert">
+        INSERT INTO TBL_PET_FILE(PET_FILE_NUMBER, PET_NUMBER, PET_FILE_NAME, PET_FILE_UPLOAD_PATH, PET_FILE_UUID)
+        VALUES (SEQ_PET_FILE.NEXTVAL, #{petNumber}, #{petFileName}, #{petFileUploadPath}, #{petFileUuid})
+    </insert>
+
+    <delete id="delete">
+        DELETE FROM TBL_PET_FILE
+        WHERE PET_NUMBER = #{petNumber}
+    </delete>
+
+    <select id="select" resultType="petFileDto">
+        SELECT PET_FILE_NUMBER, PET_FILE_NAME, PET_FILE_UPLOAD_PATH, PET_FILE_UUID, PET_NUMBER
+        FROM TBL_PET_FILE
+        WHERE PET_NUMBER = #{petNumber}
+    </select>
+
+</mapper>

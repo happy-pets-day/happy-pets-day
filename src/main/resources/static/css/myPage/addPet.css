@@ -188,6 +188,10 @@ input:focus{
 }
 
 .go-back{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
     width : 195.05px;
     height: 58px;
     border-radius: 30px;
@@ -269,4 +273,6 @@ input:focus{
     font-size: 24px;
 }
 
-
+.menu-button{
+    display: flex;
+}

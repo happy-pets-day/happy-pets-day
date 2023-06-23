@@ -12,4 +12,7 @@ public interface PetMapper {
 
 //    회원번호로 펫 정보 불러오기
     List<PetDto> selectUsersPet(Long userNumber);
+
+//    펫 등록하기
+    void insertPet(PetDto petDto);
 }

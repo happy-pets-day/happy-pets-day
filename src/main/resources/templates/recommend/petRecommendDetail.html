@@ -11,22 +11,34 @@
 <header th:replace="fragment/header :: header"></header>
 <div class="body-container">
     <div class="title">
-        <div class="title-section1">댕냥 상담소</div>
-        <div class="title-section2">고양이도 더위는 힘들어요, 고양이와 여름나기</div>
+        <div class="title-section1">댕냥 추천소</div>
+        <div class="title-section2" th:text="${detail.recommendName}"></div>
         <div class="title-section3">
-            <div>2023.05.24</div>
+            <div th:text="${detail.recommendSpecies}"></div>
         </div>
     </div>
     <div class="content-container">
-        <img th:src="@{/img/6b980705-1d57-46a4-8193-ca490d19d00d.jpg}" alt="">
+        <img th:src="@{/upload/recommend/{path}(path = ${detail.recommendFileName})}" alt="">
+        <div class="pre-content-container">
+            <div class="pre-content">
+                이름 : <span th:text="${detail.recommendName}"></span><br><br>
+                성격 : <span th:text="${detail.recommendPersonality}"></span><br><br>
+                털 색깔 : <span th:text="${detail.recommendColor}"></span>
+            </div>
+            <div class="pre-content">
+                털 길이 : <span th:text="${detail.recommendLength}"></span><br><br>
+                크기 : <span th:text="${detail.recommendSize}"></span><br><br>
+                털 빠짐 : <span th:text="${detail.recommendAlopecia}"></span>
+            </div>
+        </div>
+        <div class="content" th:text="${detail.recommendContent1}"></div>
         <div class="content">
-            고양이가 원래 사막에서 나고 자랐다고 해서, 더위를 타지 않는다고 생각하면 절대 안돼요! 고양이에게 더위는 치명적일 수 있답니다. 온도 변화에 민감하기 때문에 더위를 느껴 체온이 올라갔을 때, 본능적으로 체온을 낮추기위해 여러가지 행동을 합니다.<br><br><br>
-            ✅ 에너지를 절약한다<br><br><br>
-            날씨가 더워지면, 이리저리 움직이기보단 한 자리에 오랫동안 가만히 누워있거나 잠을 잡니다. 가만히 있어야 시원하다는 사실을 아는 것이죠! 그래서 한여름에 고양이들이 낮잠을 많이 자는 것 처럼 보입니다.<br><br><br>
-            ✅ 온도가 낮은 장소를 찾는다<br><br><br>
-            화장실 바닥, 대리석이 있는 곳 등등 표면 온도가 낮은 곳을 찾아갑니다. 폭신한 이불을 좋아하는 아이들도 여름에는 방바닥에 늘어져 있거나 식탁위에 올라가 있기도 하죠. 시중에 반려동물용 대리석 침대도 여럿 있답니다.<br><br><br>
-            ✅ 물을 더 많이 마시고, 그루밍을 자주 한다<br><br><br>
-            평소 물을 잘 안마시는 아이라도 더위에 지치면 갈증을 느껴 물을 평소보다 많이 마십니다. 또한 사람이 땀을 흘려 체온을 낮추는 것처럼, 땀을 흘리지 않는 고양이는 그루밍을 통해 털에 침을 묻히고 증발시켜 체온을 낮추려고 합니다.<br><br><br>
+            <strong>성격</strong>
+            <div th:text="${detail.recommendContent2}"></div>
+        </div>
+        <div class="content">
+            <strong>함께 살기</strong>
+            <div th:text="${detail.recommendContent3}"></div>
         </div>
     </div>
 <!--    목록 돌아가기 경로 작성-->
@@ -34,8 +46,9 @@
         <div class="list-btn">목록</div>
     </a>
 </div>
-<footer th:replace="fragment/footer :: footer"></footer>
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+<footer th:replace="fragment/footer :: footer"></footer>
 <script th:src="@{/js/fragment/header.js}"></script>
+<script th:src="@{/js/recommend/petRecommendDetail.js}"></script>
 </body>
 </html>

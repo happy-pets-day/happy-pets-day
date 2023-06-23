@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.happypetsday.mapper.RecommendMapper">
+    <select id="selectRecommendList" resultType="recommendVo">
+        SELECT R.RECOMMEND_NUMBER, R.RECOMMEND_NAME, F.RECOMMEND_FILE_NAME
+        FROM TBL_RECOMMEND R LEFT JOIN TBL_RECOMMEND_FILE F
+        ON  R.RECOMMEND_NUMBER = F.RECOMMEND_NUMBER
+        WHERE R.RECOMMEND_SPECIES = #{recommendSpecies} AND R.RECOMMEND_PERSONALITY LIKE '%'||#{recommendPersonality}||'%' AND R.RECOMMEND_COLOR LIKE '%'||#{recommendColor}||'%'
+        AND R.RECOMMEND_LENGTH LIKE '%'||#{recommendLength}||'%' AND R.RECOMMEND_SIZE = #{recommendSize} AND R.RECOMMEND_ALOPECIA LIKE #{recommendAlopecia}
+    </select>
+
+    <select id="selectRecommendByNumber" resultType="recommendVo">
+        SELECT R.RECOMMEND_NAME, F.RECOMMEND_FILE_NAME, R.RECOMMEND_SPECIES, R.RECOMMEND_PERSONALITY, R.RECOMMEND_COLOR, R.RECOMMEND_LENGTH
+             , R.RECOMMEND_SIZE, R.RECOMMEND_ALOPECIA, R.RECOMMEND_CONTENT1, R.RECOMMEND_CONTENT2, R.RECOMMEND_CONTENT3
+        FROM TBL_RECOMMEND R LEFT JOIN TBL_RECOMMEND_FILE F
+        ON  R.RECOMMEND_NUMBER = F.RECOMMEND_NUMBER
+        WHERE R.RECOMMEND_NUMBER = #{recommendNumber}
+    </select>
+
+</mapper>

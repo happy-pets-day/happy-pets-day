@@ -41,34 +41,16 @@
             </div>
         </div>
     </div>
-    <div class="main-container">
-        <a href="" class="recommend-item">
-            <img th:src="@{/img/6b980705-1d57-46a4-8193-ca490d19d00d.jpg}" alt="">
-            <div class="recommend-item-name">골든 리트리버</div>
-        </a>
-        <a href="" class="recommend-item">
-            <img th:src="@{/img/6b980705-1d57-46a4-8193-ca490d19d00d.jpg}" alt="">
-            <div class="recommend-item-name">골든 리트리버</div>
-        </a>
-        <a href="" class="recommend-item">
-            <img th:src="@{/img/6b980705-1d57-46a4-8193-ca490d19d00d.jpg}" alt="">
-            <div class="recommend-item-name">골든 리트리버</div>
-        </a>
-        <a href="" class="recommend-item">
-            <img th:src="@{/img/6b980705-1d57-46a4-8193-ca490d19d00d.jpg}" alt="">
-            <div class="recommend-item-name">골든 리트리버</div>
-        </a>
-        <a href="" class="recommend-item">
-            <img th:src="@{/img/6b980705-1d57-46a4-8193-ca490d19d00d.jpg}" alt="">
-            <div class="recommend-item-name">골든 리트리버</div>
-        </a>
-        <a href="" class="recommend-item">
-            <img th:src="@{/img/6b980705-1d57-46a4-8193-ca490d19d00d.jpg}" alt="">
-            <div class="recommend-item-name">골든 리트리버</div>
-        </a>
-        <a href="" class="recommend-item">
-            <img th:src="@{/img/6b980705-1d57-46a4-8193-ca490d19d00d.jpg}" alt="">
-            <div class="recommend-item-name">골든 리트리버</div>
+
+    <div class="main-container-empty" th:if="${#lists.isEmpty(recommendList)}">
+        검색 결과가 없습니다. 다른 조건으로 검색해 주세요!
+    </div>
+
+    <div class="main-container" th:unless="${#lists.isEmpty(recommendList)}">
+<!--        추천 결과 반복-->
+        <a th:href="@{/recommend/detail(recommendNumber = ${recommend.recommendNumber})}" class="recommend-item" th:each="recommend : ${recommendList}">
+            <img th:src="@{/upload/recommend/{path}(path = ${recommend.recommendFileName})}" alt="">
+            <div class="recommend-item-name" th:text="${recommend.recommendName}"></div>
         </a>
     </div>
     <footer th:replace="fragment/footer :: footer"></footer>

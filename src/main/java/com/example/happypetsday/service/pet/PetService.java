@@ -29,7 +29,17 @@ public class PetService {
         return petMapper.selectUsersPet(userNumber);
     }
 
-
+    /**
+     * 펫 정보 등록하기
+     * @param petDto
+     * @throws IllegalArgumentException 펫 정보, 회원번호 누락시 발생
+     */
+    public void addPet(PetDto petDto){
+        if(petDto == null){
+            throw new IllegalArgumentException("펫, 회원정보 누락");
+        }
+        petMapper.insertPet(petDto);
+    }
 
 
 

@@ -76,3 +76,11 @@ $.datepicker.setDefaults({
     changeYear: true,
     yearRange:'c-50:c'
 });
+
+$('#select').on('change', function (){
+    if($('#select').val() == 'direct'){
+        $('#selectbox-direct').attr('required', true);
+    }else{
+        $('#selectbox-direct').attr('required', false);
+    }
+});

@@ -49,7 +49,7 @@
           <div class="select-zone">
               <div class="select-btn dog">강아지</div>
               <div class="select-btn cat">고양이</div>
-              <div class="select-btn etc">기타</div>
+<!--              <div class="select-btn etc">기타</div>-->
           </div>
       </div>
       <div class="section2 select">
@@ -110,13 +110,13 @@
               <div class="select-btn">상관없음</div>
           </div>
       </div>
-      <form class="next" th:action="@{/recommend/list}">
+      <form class="next" th:action="@{/recommend/list}" method="post">
           <input type="hidden" name="recommendSpecies" class="input1">
           <input type="hidden" name="recommendPersonality" class="input2">
           <input type="hidden" name="recommendColor" class="input3">
           <input type="hidden" name="recommendLength" class="input4">
           <input type="hidden" name="recommendSize" class="input5">
-          <input type="hidden" name="recommendAlopecia" class="input6">
+          <input type="hidden" name="recommendAlopecia" class="input6"required>
           <button type="submit" class="submit">다음</button>
       </form>
   </div>
