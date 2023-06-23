@@ -15,4 +15,5 @@
         VALUES (#{applyNumber}, #{applyContent}, SYSDATE, #{userNumber})
     </insert>
 
+
 </mapper>

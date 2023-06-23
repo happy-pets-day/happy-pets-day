@@ -32,33 +32,28 @@ public class SitterController {
     }
 
     @PostMapping("/apply")
-    public RedirectView sendApply( SitterApplyDto sitterApplyDto, HttpServletRequest req,
-                                   RedirectAttributes redirectAttributes,@RequestParam("applyFile") List<MultipartFile> files,
-                                   @RequestParam("applyFileTitle")List<String> applyFileTitle, SitterApplyLicenseFile sitterApplyLicenseFile){
-
-//        Long userNumber = (Long)req.getSession().getAttribute("userNumber");
-//        sitterApplyDto.setUserNumber(userNumber);
-
+    public RedirectView sendApply(
+            SitterApplyDto sitterApplyDto, HttpServletRequest req, RedirectAttributes redirectAttributes,
+            @RequestParam("applyFile") List<MultipartFile> files, @RequestParam("applyFileTitle") List<String> applyFileTitle
+    ) {
         sitterApplyDto.setUserNumber(3L);
-        sitterApplyLicenseFile.setUserNumber(3L);
-//        System.out.println(applyFileTitle);
-//        System.out.println(sitterApplyDto);
 
         sitterApplyService.register(sitterApplyDto);
-
         redirectAttributes.addFlashAttribute("applyNumber", sitterApplyDto.getApplyNumber());
 
-
-        if(files != null){
+        if (files != null && !files.isEmpty()) { // 파일 리스트가 null이 아니고 비어있지 않을 경우에만 처리
             try {
-                sitterApplyLicenseFileService.registerAndSaveFiles(
-                        files, sitterApplyDto.getApplyNumber(), applyFileTitle, sitterApplyDto.getUserNumber());
+                sitterApplyLicenseFileService.registerAndSaveFiles(files, sitterApplyDto.getApplyNumber(), applyFileTitle, sitterApplyDto.getUserNumber());
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+        System.out.println("1" + sitterApplyDto);
+        System.out.println("2" + files);
+        System.out.println("3" + applyFileTitle);
         return new RedirectView("/sitter/apply");
     }
+
 
     @GetMapping("/addList")
     public String sitterAddList(){

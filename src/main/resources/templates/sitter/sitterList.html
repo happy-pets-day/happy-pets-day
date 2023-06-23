@@ -20,11 +20,13 @@
       <p>원하는 펫시터를 찾아보세요!</p>
     </div>
     <div class="main-content">
+      <th:block th:if="session.userNumber == sitter.userNumber">
       <div class="plus-box">
         <div class="plus-btn">
           <span class="material-symbols-outlined"> add </span>
         </div>
       </div>
+      </th:block>
       <div class="profile-box">
         <div class="sitter-thumbnail">
           <img src="" alt="" />
@@ -32,8 +34,8 @@
         <div>
           <div class="sitter-info-box">
             <div class="sitter-info">
-              <p class="sitter-name">이정현 펫시터</p>
-              <h2>안녕하세요 내 아이처럼 소중히 돌봐드리겠습니다.</h2>
+              <p class="sitter-name" th:text="${user.userName}"> 펫시터</p>
+              <h2 th:text="${sitter.sitterHeader}">안녕하세요 내 아이처럼 소중히 돌봐드리겠습니다.</h2>
             </div>
             <div class="sitter-profile" style="">
               <img src="" alt="" />
@@ -88,5 +90,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script th:src="@{/js/sitter/sitterList.js}"></script>
   <script th:src="@{/js/fragment/header.js}"></script>
+  <script th:inline="javascript"> // 타임리프 문법을 자바스크립트에서 사용하기 위한 설정
+  let loginNumber = [[${session.userNumber=3}]];  // 타임리프 문법은 [] 2개로 감싸줘야 한다.
+  </script>
   </body>
 </html>

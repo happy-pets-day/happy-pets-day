@@ -4,9 +4,14 @@ console.log($input);
 
 // file change이벤트로 미리보기 갱신하기
 $input.on("change", function () {
+  let dt = new DataTransfer();
   let files = this.files;
 
-  $(".file-wrap").prepend(`<li class="img-list"></li>
+  $('.file-wrap .img-list').detach();
+  $('.file-wrap .input-hidden').detach();
+
+  for (let i = 0; i < files.length; i++) {
+    $(".file-wrap").prepend(`<li class="img-list"></li>
                     <div class="input-hidden">
                       <div class="license-name">
                         <p>자격증 이름 :</p>
@@ -14,30 +19,40 @@ $input.on("change", function () {
                       <input type="text" name="applyFileTitle"/>
                     </div>`);
 
-  for (let i = 0; i < files.length; i++) {
-    let reader = new FileReader();
-    reader.onload = function (e) {
-      let src = e.target.result;
-      let $img = $("<img>").attr("src", src);
-      $img.css({
-        width: "100%",
-        height: "100%",
-      });
-      $(".img-list").eq(0).append($img);
-    };
-    reader.readAsDataURL(files[i]);
+    let src = URL.createObjectURL(files[i]);
+    let $img = $("<img>").attr("src", src);
+    $img.css({
+      width: "100%",
+      height: "100%",
+    });
+    $(".img-list").eq(0).append($img);
+
+
+
+    // let reader = new FileReader();
+    // reader.onload = function (e) {
+    //   let src = e.target.result;
+    //   let $img = $("<img>").attr("src", src);
+    //   $img.css({
+    //     width: "100%",
+    //     height: "100%",
+    //   });
+    //   $(".img-list").eq(0).append($img);
+    // };
+    // reader.readAsDataURL(files[i]);
+    console.log(files);
   }
 });
 
-$(document).ready(function () {
-  // 체크박스 클릭 이벤트 핸들러
-  $("input[name='specialty']").on("click", function () {
-    // 모든 체크박스의 체크를 해제
-    $("input[name='specialty']").prop("checked", false);
-    // 현재 클릭한 체크박스만 체크
-    $(this).prop("checked", true);
-  });
-});
+// $(document).ready(function () {
+//   // 체크박스 클릭 이벤트 핸들러
+//   $("input[name='specialty']").on("click", function () {
+//     // 모든 체크박스의 체크를 해제
+//     $("input[name='specialty']").prop("checked", true);
+//     // 현재 클릭한 체크박스만 체크
+//     $(this).prop("checked", true);
+//   });
+// });
 
 // 클릭 이벤트로 이미지 지우고 미리보기 갱신하기
 // $imgList.on("click", function (e) {
