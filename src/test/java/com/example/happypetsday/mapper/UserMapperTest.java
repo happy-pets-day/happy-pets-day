@@ -23,7 +23,7 @@ class UserMapperTest {
     @BeforeEach
     void setUp() {
         userDto = new  UserDto();
-        userDto.setUserId("test");
+        userDto.setUserId("bbb");
         userDto.setUserPassword("1234");
         userDto.setUserName("홍길동");
         userDto.setUserGender("M");

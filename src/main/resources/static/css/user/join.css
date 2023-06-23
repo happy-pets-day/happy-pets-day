@@ -513,3 +513,11 @@ select::-ms-expand {
 select {
   background: url("arr_pink.gif") no-repeat 97% 50%/15px auto;
 }
+
+.success {
+  color: green;
+}
+
+.error {
+  color: red;
+}

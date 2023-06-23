@@ -1,6 +1,3 @@
-// '다시 예약하기' 버튼 숨김
-$(".r_res").hide();
-$(".review").hide();
 
 // '예약 취소'
 $(".cancel").on("click", function () {
@@ -11,9 +8,9 @@ $(".cancel").on("click", function () {
     $(".reservation-status").text("예약 취소");
     $(".reservation-status").css("color", "red");
     // '다시 예약하기' 버튼으로 변경
-    $(".cancel").hide();
-    $(".complete").hide();
-    $(".r_res").show();
+    $(".cancel").css("display", "none");
+    $(".complete").css("display", "none");
+    $(".r_res").css("display", "block");
   } else {
     // 취소 버튼을 누른 경우 아무 작업도 수행하지 않음
   }
@@ -25,10 +22,8 @@ $(".complete").on("click", function () {
     $(".reservation-status").text("이용 완료");
     $(".reservation-status").css("color", "#00bf00");
 
-    $(".cancel").hide();
-    $(".complete").hide();
-    $(".r_res").show();
-    $(".review").show();
+    $(".basic-btn").css("display", "none");
+    $(".review-btn").css("display", "block");
   } else {
   }
 });

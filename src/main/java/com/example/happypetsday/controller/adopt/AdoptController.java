@@ -13,4 +13,7 @@ public class AdoptController {
     }
     @GetMapping("/detail")
     public String detail(){return "AdoptionInformation/adoptDetail";}
+
+    @GetMapping("/api")
+    public String apiTest() { return "AdoptionInformation/adoptDetail"; }
 }

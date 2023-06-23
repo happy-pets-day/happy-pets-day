@@ -30,39 +30,39 @@
         <tbody>
         <tr>
           <th class="table-head-left">회원번호</th>
-          <td>1</td>
+          <td th:text="${user.userNumber}"></td>
         </tr>
         <tr>
           <th>등급명</th>
-          <td>펫시터 신청중</td>
+          <td th:text="${user.userStatusResult}"></td>
         </tr>
         <tr>
           <th>아이디</th>
-          <td><a href="">aa123</a></td>
+          <td th:text="${user.userId}"><a href=""></a></td>
         </tr>
         <tr>
           <th>이름</th>
-          <td>홍길동</td>
+          <td th:text="${user.userName}"></td>
         </tr>
         <tr>
           <th>성별</th>
-          <td>M</td>
+          <td th:text="${user.userGender}"></td>
         </tr>
         <tr>
           <th>이메일</th>
-          <td>aa123@naver.com</td>
+          <td th:text="${user.userEmail}"></td>
         </tr>
         <tr>
           <th>생일</th>
-          <td>1995-01-01</td>
+          <td th:text="${user.userBirth}"></td>
         </tr>
         <tr>
           <th>연락처</th>
-          <td>010-1234-5678</td>
+          <td th:text="${user.userPhoneNumber}"></td>
         </tr>
         <tr>
           <th class="table-head-left-bottom">주소</th>
-          <td>서울시 송파구 마천로23 현대아파트 111동 202호</td>
+          <td th:text="${user.userAddress}"></td>
         </tr>
         </tbody>
       </table>

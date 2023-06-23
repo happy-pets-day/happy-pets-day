@@ -70,52 +70,30 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // 생년월일
+  // 달력으로 생년월일 집어넣기
+
+    $('.datepicker').datepicker();
+
+
   $.datepicker.setDefaults({
-    dateFormat: "yy-mm-dd",
-    prevText: "이전 달",
-    nextText: "다음 달",
-    monthNames: [
-      "1월",
-      "2월",
-      "3월",
-      "4월",
-      "5월",
-      "6월",
-      "7월",
-      "8월",
-      "9월",
-      "10월",
-      "11월",
-      "12월",
-    ],
-    monthNamesShort: [
-      "1월",
-      "2월",
-      "3월",
-      "4월",
-      "5월",
-      "6월",
-      "7월",
-      "8월",
-      "9월",
-      "10월",
-      "11월",
-      "12월",
-    ],
-    dayNames: ["일", "월", "화", "수", "목", "금", "토"],
-    dayNamesShort: ["일", "월", "화", "수", "목", "금", "토"],
-    dayNamesMin: ["일", "월", "화", "수", "목", "금", "토"],
+    dateFormat: 'yy-mm-dd',
+    prevText: '이전 달',
+    nextText: '다음 달',
+    monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+    monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+    dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+    dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+    dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
     showMonthAfterYear: true,
-    yearSuffix: "년",
+    yearSuffix: '년',
     changeMonth: true,
     changeYear: true,
-    yearRange: "1930:2023",
+    yearRange:'c-50:c'
   });
 
-  $(".datepicker").datepicker();
-  $(".datepicker").on("click", function () {
-  });
+
+
+
 
   // 핸드폰번호 유효성 검사
   phoneInput.addEventListener("input", function () {
@@ -158,27 +136,91 @@ document.addEventListener("DOMContentLoaded", function () {
   //   }
   // });
 
-  function checkUserIdAvailability(userId) {
-    // AJAX 호출을 통해 서버에 아이디 중복 검사 요청
-    $.ajax({
-      url: "/checkUserIdAvailability", // 중복 검사를 수행하는 서버 API 경로
-      method: "GET",
-      data: { userId: userId },
-      success: function(response) {
-        if (response.available) {
-          // 아이디 사용 가능
-          $(".confirmMsg").text("사용 가능한 아이디입니다.").removeClass("error").addClass("success");
-        } else {
-          // 아이디 중복
-          $(".confirmMsg").text("이미 사용 중인 아이디입니다.").removeClass("success").addClass("error");
-        }
-      },
-      error: function() {
-        // 오류 처리
-        $(".confirmMsg").text("중복 검사 중 오류가 발생했습니다.").removeClass("success").addClass("error");
-      }
+  // function checkUserIdAvailability(userId) {
+  //   // AJAX 호출을 통해 서버에 아이디 중복 검사 요청
+  //   $.ajax({
+  //     url: "/checkUserIdAvailability", // 중복 검사를 수행하는 서버 API 경로
+  //     method: "GET",
+  //     data: { userId: userId },
+  //     success: function(response) {
+  //       if (response.available) {
+  //         // 아이디 사용 가능
+  //         $(".confirmMsg").text("사용 가능한 아이디입니다.").removeClass("error").addClass("success");
+  //       } else {
+  //         // 아이디 중복
+  //         $(".confirmMsg").text("이미 사용 중인 아이디입니다.").removeClass("success").addClass("error");
+  //       }
+  //     },
+  //     error: function() {
+  //       // 오류 처리
+  //       $(".confirmMsg").text("중복 검사 중 오류가 발생했습니다.").removeClass("success").addClass("error");
+  //     }
+  //   });
+  //   return false; // 폼 전송을 막기 위해 false를 반환
+  // }
+
+  // function checkUserIdAvailability(userId) {
+  //   // AJAX 호출을 통해 서버에 아이디 중복 검사 요청
+  //   $.ajax({
+  //     url: "/checkUserIdAvailability",
+  //     method: "GET",
+  //     data: { userId: userId },
+  //     success: function(response) {
+  //       if (response.available) {
+  //         // 아이디 사용 가능
+  //         $(".confirmMsg").text("사용 가능한 아이디입니다.").removeClass("error").addClass("success");
+  //         $(".error-msg").hide();
+  //       } else {
+  //         // 아이디 중복
+  //         $(".confirmMsg").text("").removeClass("success");
+  //         $(".error-msg").show();
+  //       }
+  //     },
+  //     error: function() {
+  //       // 오류 처리
+  //       $(".confirmMsg").text("중복 검사 중 오류가 발생했습니다.").removeClass("success").addClass("error");
+  //     }
+  //   });
+  //   return false; // 폼 전송을 막기 위해 false를 반환
+  // }
+
+  $(document).ready(function() {
+    $('#id').on('blur', function() {
+      var userId = $(this).val();
+      checkDuplicate(userId);
     });
-  }
+
+    function checkDuplicate(userId) {
+      var confirmMsg = $('#idConfirmMsg');
+      $.ajax({
+        url: '/users/checkDuplicate',
+        type: 'GET',
+        data: { userId: userId },
+        success: function(response) {
+          if (response ===  false) {
+            confirmMsg.text('중복된 아이디입니다. 다른 아이디를 선택해주세요.');
+            confirmMsg.css('color', 'red');
+            console.log('아이디 중복: ', userId);
+          } else {
+            confirmMsg.text('사용 가능한 아이디입니다.');
+            confirmMsg.css('color', 'green');
+            console.log('아이디 사용 가능: ', userId);
+          }
+        },
+        error: function(a,b,c,) {
+          console.log(c);
+          console.error('AJAX request failed');
+        }
+      });
+    }
+  });
+
+
+
+
+
+
+
 
   // 비밀번호 확인 유효성 검사
   RepwInput.addEventListener("input", function () {

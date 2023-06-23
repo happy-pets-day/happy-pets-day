@@ -1,11 +1,31 @@
+
+let tmpEditBox = null;
+
 // 메뉴버튼(수정,삭제) 누를 시 수정삭제창 나타나고 다른 곳 클릭하면 사라지기
 $("body").on("click", function (event) {
-  if ($(event.target).hasClass("menu-dot-img")) {
-    $(".edit-box").css("display", "block");
-  } else {
-    $(".edit-box").css("display", "none");
+
+  let target = $(event.target);
+  let editBox = target.closest('.animal-swiper').find('.edit-box');
+
+  if (target.hasClass("menu-dot-img")) {
+    if(tmpEditBox){
+      tmpEditBox.css("display", "none");
+    }
+    editBox.css("display", "block");
+    tmpEditBox = editBox;
+  } else{
+    console.log('none')
+    tmpEditBox.css("display", "none");
   }
 });
+
+
+
+
+
+
+
+
 
 // 삭제버튼 누를 시 alert창
 $(".delete1").on("click", function () {
@@ -74,3 +94,52 @@ function restoreDefaultImg() {
   let uploadedImage = document.getElementById("uploaded-image");
   uploadedImage.src = "https://lifet.co.kr/img/profile/default.png";
 }
+
+// 생년월일 입력 datepicker
+$(function(){
+  $('.datepicker').datepicker({
+
+  });
+});
+
+$.datepicker.setDefaults({
+  dateFormat: "yy-mm-dd",
+  prevText: "이전 달",
+  nextText: "다음 달",
+  monthNames: [
+    "1월",
+    "2월",
+    "3월",
+    "4월",
+    "5월",
+    "6월",
+    "7월",
+    "8월",
+    "9월",
+    "10월",
+    "11월",
+    "12월",
+  ],
+  monthNamesShort: [
+    "1월",
+    "2월",
+    "3월",
+    "4월",
+    "5월",
+    "6월",
+    "7월",
+    "8월",
+    "9월",
+    "10월",
+    "11월",
+    "12월",
+  ],
+  dayNames: ["일", "월", "화", "수", "목", "금", "토"],
+  dayNamesShort: ["일", "월", "화", "수", "목", "금", "토"],
+  dayNamesMin: ["일", "월", "화", "수", "목", "금", "토"],
+  showMonthAfterYear: true,
+  yearSuffix: "년",
+  changeMonth: true,
+  changeYear: true,
+  yearRange: "1930:2023",
+});

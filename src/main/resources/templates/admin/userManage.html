@@ -2,109 +2,106 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>전체회원관리</title>
-  <link rel="stylesheet" th:href="@{/css/admin/userManage.css}">
-  <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
-  <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전체회원관리</title>
+    <link rel="stylesheet" th:href="@{/css/admin/userManage.css}">
+    <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
+    <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
 </head>
 
 <body>
 <header th:replace="fragment/adminHeader :: adminHeader"></header>
+<!--<header th:replace="fragment/header :: header"></header>-->
 
 <div class="whole-container">
 
-  <div class="side-menubar" th:replace="fragment/adminSideBar :: adminSideBar"></div>
+    <div class="side-menubar" th:replace="fragment/adminSideBar :: adminSideBar"></div>
 
-  <div class="content-container">
-    <div class="menu-category" th:replace="fragment/adminStatistics :: adminStatistics"></div>
+    <div class="content-container">
+        <div class="menu-category" th:replace="fragment/adminStatistics :: adminStatistics"></div>
 
-    <h2 class="guide-menu">전체회원 관리</h2>
-    <div class="bottom-bar"></div>
+        <h2 class="guide-menu">전체회원 관리</h2>
+        <div class="bottom-bar"></div>
 
-    <div class="detailed-guide">* 회원 아이디를 클릭 시 회원상세페이지로 이동합니다.</div>
+        <div class="detailed-guide">* 회원 아이디를 클릭 시 회원상세페이지로 이동합니다.</div>
 
-    <div class="search-box">
-      <input type="text" class="search-txt" placeholder="Search-id">
-      <button type="button" class="search-button"></button>
-    </div>
-
-
-    <div class="container">
-
-      <table class="board-table">
-        <div class="head-layout">
-          <thead>
-          <tr>
-            <th class="table-head-left">회원번호</th>
-            <th>아이디</th>
-            <th>이름</th>
-            <th class="table-head-right">등급명</th>
-          </tr>
-          </thead>
+        <div class="search-box">
+            <input type="text" class="search-txt" placeholder="Search-id">
+            <button type="button" class="search-button"></button>
         </div>
-        <tbody>
-        <!-- ========== 게시글 목록 예시 =========== -->
 
-        <!-- <th:block th:if="${not #lists.isEmpty(boardList)}">
-            <tr th:each="board : ${boardList}"> -->
-        <td class="no">1</td>
-        <td class="user-id">
-          <a href="#">
-            aa123
-          </a>
-        </td>
-        <td class="user-name">홍길동</td>
-        <td class="user-level">일반회원</td>
-        </tr>
-        <!-- 더미데이터 예시 -->
-        <td class="no">2</td>
-        <td class="user-id">
-          <a href="#">
-            bb123
-          </a>
-        </td>
-        <td class="user-name">김영희</td>
-        <td class="user-level">펫시터회원</td>
-        </tr>
-        <!-- 더미데이터 예시 -->
 
-        <!-- </th:block>
-        <th:block th:unless="${not #lists.isEmpty(boardList)}"> -->
-        <tr>
-          <td colspan="5" align="center">등록된 회원이 없습니다.</td>
-        </tr>
-        <!-- </th:block> -->
+        <div class="container">
 
-        <!-- ========== /게시글 목록 예시 =========== -->
-        </tbody>
-      </table>
-      <div class="pagination">
-        <ul>
-          <!-- ========== 페이징 처리 예시 ============ -->
-          <li><a href="#" class="prev">&lt;</a></li>
-          <li><a href="#" class="active">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#">4</a></li>
-          <li><a href="#">5</a></li>
-          <li><a href="#" class="next">&gt;</a></li>
-          <!-- ========== /페이징 처리 예시 ============ -->
-        </ul>
-      </div>
+            <table class="board-table">
+                <div class="head-layout">
+                    <thead>
+                    <tr>
+                        <th class="table-head-left">회원번호</th>
+                        <th>아이디</th>
+                        <th>이름</th>
+                        <th class="table-head-right">등급명</th>
+                    </tr>
+                    </thead>
+                </div>
+                <tbody>
+                <!-- ========== 게시글 목록 예시 =========== -->
+
+                <th:block th:unless="${#lists.isEmpty(userList)}">
+                <tr th:each="user : ${userList}">
+                    <td class="no" th:text="${user.userNumber}"></td>
+
+                    <td class="user-id">
+                    <a th:href="@{/admin/userDetailManage(userNumber=${user.userNumber})}" th:text="${user.userId}"></a>
+                    </td>
+
+                    <td class="user-name" th:text="${user.userName}"></td>
+                    <td class="user-level" th:text="${user.userStatusResult}"></td>
+                </tr>
+                 </th:block>
+
+                <th:block th:if="${#lists.isEmpty(userList)}">
+                <tr>
+                    <td colspan="5" align="center">등록된 회원이 없습니다.</td>
+                </tr>
+                 </th:block>
+
+                <!-- ========== /게시글 목록 예시 =========== -->
+                </tbody>
+            </table>
+            <div class="pagination">
+                <ul>
+                    <!-- ========== 페이징 처리 예시 ============ -->
+                    <li th:if="${pageInfo.prev}"><a th:href="@{/admin/userManage(page=${pageInfo.startPage-1})}" class="prev">&lt;</a></li>
+
+                    <th:block th:each="i : ${#numbers.sequence(pageInfo.startPage, pageInfo.endPage)}">
+                        <li th:if="${i == pageInfo.criteria.page}"><a th:href="@{/admin/userManage(page=${i})}" class="active" th:text="${i}"></a></li>
+                        <li th:unless="${i == pageInfo.criteria.page}"><a th:href="@{/admin/userManage(page=${i})}" th:text="${i}"></a></li>
+                    </th:block>
+
+
+                    <li th:if="${pageInfo.next}"><a th:href="@{/admin/userManage(page=${pageInfo.endPage+1})}" class="next">&gt;</a></li>
+
+                    <!-- ========== /페이징 처리 예시 ============ -->
+                </ul>
+            </div>
+
+
+        </div>
 
 
     </div>
+</div>
 
 
-
-  </div>
-  </div>
+</div>
+</div>
 
 <footer th:replace="fragment/adminFooter :: adminFooter"></footer>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script th:src="@{/js/admin/userManage.js}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script th:src="@{/js/admin/userManage.js}"></script>
+<script th:src="@{/js/fragment/header.js}"></script>
 </body>
 
 </html>

@@ -29,20 +29,21 @@
                                 <input id="id" type name="userId" placeholder="아이디"/>
                             </div>
                             <div class="field">
-                                <input id="password" type name="userPassword" placeholder="비밀번호"/>
+                                <input type="password" id="password" name="userPassword" placeholder="비밀번호"/>
                             </div>
                             <div class="auto-log">
                                 <div class="check-box">
                                     <input type="checkbox" name/>
                                     <label class="save-id">아이디 저장</label>
                                 </div>
-                                <a href="">비밀번호 찾기</a>
+                                <a th:href="@{/user/findId}">아이디/
+                                    비밀번호 찾기</a>
                             </div>
                             <button id="submit">로그인</button>
                         </div>
                         <div class="join">
                             "아직 계정이 없나요?"
-                            <a href="" class="join-btn">회원가입</a>
+                            <a th:href="@{/user/join}" class="join-btn">회원가입</a>
                         </div>
                         <p class="confirmMsg"></p>
                     </div>

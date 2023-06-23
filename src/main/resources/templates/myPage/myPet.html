@@ -11,6 +11,13 @@
       crossorigin
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css"
     />
+    <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
+          integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+    />
     <link rel="stylesheet" th:href="@{/css/myPage/myPet.css}" />
     <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
     <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
@@ -107,24 +114,24 @@
           </div>
           <div class="field">
             <div class="info-kind">생일</div>
-            <input
-                    class="birth birth_year"
-                    type="text"
-                    placeholder="년(4자)"
-                    maxlength="4"
-            />
-            <input
-                    class="birth birth_month"
-                    type="text"
-                    placeholder="월"
-                    maxlength="2"
-            />
-            <input
-                    class="birth birth-day"
-                    type="text"
-                    placeholder="일"
-                    maxlength="2"
-            />
+            <input type="text" class="info birth datepicker" name="petBirth">
+<!--            <input-->
+<!--                    class="birth birth_year"-->
+<!--                    type="text"-->
+<!--                    placeholder="클릭해주세요!"-->
+<!--            />-->
+<!--            <input-->
+<!--                    class="birth birth_month"-->
+<!--                    type="text"-->
+<!--                    placeholder="월"-->
+<!--                    maxlength="2"-->
+<!--            />-->
+<!--            <input-->
+<!--                    class="birth birth-day"-->
+<!--                    type="text"-->
+<!--                    placeholder="일"-->
+<!--                    maxlength="2"-->
+<!--            />-->
           </div>
           <div class="field select-btn">
             <div class="info-kind">성별</div>
@@ -158,44 +165,18 @@
 <!-- 회원정보 -->
 <section id="container">
   <!-- 왼쪽 탭 목록 -->
-  <div class="mypage-left">
-    <div class="color-text">
-      <span class="font-bold user-name">박광인</span>
-      <span>님의 마이페이지</span>
-    </div>
-
-    <!-- 탭 별로 경로설정 -->
-    <ul>
-      <li>
-        <h3>나의 정보</h3>
-        <a href=""> 회원정보 관리 </a>
-      </li>
-      <li>
-        <h3>나의 반려동물</h3>
-        <a href=""> 프로필 관리 </a>
-      </li>
-      <li>
-        <h3>펫시터</h3>
-        <a href="">내 소개</a>
-        <a href="">예약 내역 </a>
-        <a href="">예약 확인 </a>
-      </li>
-      <li>
-        <h3>나의 게시물</h3>
-        <a href="">산책 모임</a>
-      </li>
-    </ul>
-  </div>
+  <div class="mypage-left" th:replace="fragment/myPageSideBar :: myPageSideBar"></div>
 
   <!-- 오른쪽 컨텐츠 -->
   <div class="mypage-right">
     <h2>나의 반려동물</h2>
     <div class="nav-write">
       <!-- <div class="mypetwrite">김철수님의 반려동물</div> -->
-      <a href="" class="pet-register">+펫 등록</a>
+      <a th:href="@{/myPage/addPet}" class="pet-register">+펫 등록</a>
     </div>
     <div class="container">
       <div class="swiper-container">
+        <!--  반복할 펫카드 시작   -->
         <div class="animal-swiper">
           <div class="profile-card">
             <div class="profile-info">
@@ -213,6 +194,9 @@
               />
             </div>
             <div class="profile-info2">
+              <!--펫 번호-->
+              <input type="hidden" class="pet-number" value="">
+
               <div class="name">이름 : 백설이</div>
               <div class="kind">동물 종류 : 강아지</div>
               <div class="detailed-kind">품종 : 진돗개</div>
@@ -250,10 +234,12 @@
           </article>
         </div>
 
+        <!--  반복할 펫카드 끝      -->
+
         <div class="profile-card2">
-          <a href="" class="card2-a">
+          <a th:href="@{/myPage/addPet}" class="card2-a">
             <div class="circle">
-              <div class="plus">+</div>
+              <img src="/img/profile_add.svg" alt="">
             </div>
             <div class="add-profile">프로필 추가</div>
           </a>
@@ -268,6 +254,12 @@
 <footer th:replace="fragment/footer :: footer"></footer>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
+        integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+></script>
 <script th:src="@{/js/fragment/header.js}"></script>
 <script th:src="@{/js/myPage/myPet.js}"></script>
 </body>

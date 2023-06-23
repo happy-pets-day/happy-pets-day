@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.happypetsday.mapper.AdminMapper">
+
+    <select id="selectUserOne">
+        SELECT USER_NUMBER, USER_STATUS, USER_ID, USER_NAME, USER_GENDER, USER_EMAIL, USER_BIRTH, USER_PHONE_NUMBER, USER_ADDRESS
+        FROM TBL_USER
+        WHERE USER_NUMBER =#{userNumber}
+    </select>
+
+    <select id="selectAllUser">
+        SELECT USER_NUMBER, USER_ID,  USER_NAME, USER_STATUS
+        FROM(
+            SELECT ROWNUM RN,
+                    USER_NUMBER, USER_ID,  USER_NAME, USER_STATUS
+            FROM(
+            SELECT USER_NUMBER, USER_ID,  USER_NAME, USER_STATUS
+            FROM TBL_USER
+            ORDER BY USER_NUMBER DESC
+            )
+        <![CDATA[
+        WHERE ROWNUM <= #{page} * #{amount}
+            ]]>
+        )
+        WHERE RN > ( #{page} - 1 ) * #{amount}
+    </select>
+
+    <select id="selectTotal" resultType="_int">
+        SELECT COUNT(USER_NUMBER) FROM TBL_USER
+    </select>
+
+    <update id="update">
+        UPDATE TBL_USER
+        SET USER_STATUS = #{userStatus}
+        WHERE USER_NUMBER = #{userNumber}
+    </update>
+
+</mapper>

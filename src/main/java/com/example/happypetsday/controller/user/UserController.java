@@ -4,9 +4,12 @@ import com.example.happypetsday.dto.UserDto;
 import com.example.happypetsday.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,18 +27,17 @@ public class UserController {
         return "user/join";
     }
 
-    //    회원가입 처리
-    @PostMapping("/join")
-    public RedirectView join(UserDto userDto) {
-//        추후에 오류 수정후 삭제
-//        userDto.setUserAddress("서울시 강남구");
-        if (!userService.isUserIdAvailable(userDto.getUserId())) {
-            // 아이디가 이미 사용 중인 경우
-            return new RedirectView("/user/join?error=duplicate");
-        }
-        userService.register(userDto);
-        return new RedirectView("/user/login");
-    }
+//        회원가입 처리
+@PostMapping("/join")
+public RedirectView join(UserDto userDto) {
+//    if (!userService.isUserIdAvailable(userDto.getUserId())) {
+//        // 아이디가 이미 사용 중인 경우
+//        return new RedirectView("/user/checkDuplicate");
+//    }
+    userService.register(userDto);
+    return new RedirectView("/user/login");
+}
+
 
     //    로그인 처리
     @PostMapping("/login")
