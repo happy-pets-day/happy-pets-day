@@ -33,9 +33,9 @@
         WHERE SITTER_NUMBER = #{sitterNumber}
     </delete>
 
-    <select id="select" resultType="sitterProfileFileDto">
-        SELECT SITTER_PROFILE_NUMBER, SITTER_NUMBER, SITTER_PROFILE_FILE_NAME, SITTER_PROFILE_UUID, SITTER_PROFILE_UPLOAD_PATH
-        FROM TBL_SITTER_PROFILE_FILE
+    <select id="select" resultType="sitterFileDto">
+        SELECT SITTER_FILE_NUMBER, SITTER_NUMBER, SITTER_FILE_FILE_NAME, SITTER_FILE_UUID, SITTER_FILE_UPLOAD_PATH
+        FROM TBL_SITTER_FILE
         WHERE SITTER_NUMBER =#{sitterNumber}
     </select>
 

@@ -45,7 +45,7 @@ public class SitterApplyLicenseFileService {
 
     //    파일 저장 처리
     public SitterApplyLicenseFile saveFile(MultipartFile file, Long userNumber, Long applyNumber) throws IOException {
-        if (file == null) {
+        if (file == null||applyNumber==null ) {
             throw new IllegalArgumentException("파일이 누락되었습니다.");
         }
 
@@ -63,6 +63,8 @@ public class SitterApplyLicenseFileService {
 
         File uploadFile = new File(uploadPath, sysName);
         file.transferTo(uploadFile);
+
+        System.out.println(uploadFile.toPath());
 
         if (Files.probeContentType(uploadFile.toPath()).startsWith("image")) {
             FileOutputStream out = new FileOutputStream(new File(uploadPath, "th_" + sysName));
@@ -104,6 +106,7 @@ public class SitterApplyLicenseFileService {
                 SitterApplyLicenseFile fileDto = saveFile(file, userNumber, applyNumber);
 
                 fileDto.setApplyFileTitle(title);
+                fileDto.setApplyNumber(applyNumber);
                 register(fileDto);
             }
         }
