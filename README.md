@@ -26,4 +26,6 @@
 
 ## 주요 기능 소개
 1. ### 관리자페이지
-   > [관리자페이지 Wiki로 이동] (https://github.com/Jmsuhhh/happy-pets-day/wiki/%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5-%EC%86%8C%EA%B0%9C(%EA%B4%80%EB%A6%AC%EC%9E%90-%ED%8E%98%EC%9D%B4%EC%A7%80) "관리자페이지")
+   > [관리자페이지 Wiki로 이동][wiki-link]
+
+[wiki-link]: https://github.com/Jmsuhhh/happy-pets-day/wiki/%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5-%EC%86%8C%EA%B0%9C(%EA%B4%80%EB%A6%AC%EC%9E%90-%ED%8E%98%EC%9D%B4%EC%A7%80) "관리자페이지"
